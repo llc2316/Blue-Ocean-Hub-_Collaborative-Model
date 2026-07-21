@@ -1,0 +1,14 @@
+parameter,value,unit,description,type
+design_pue,1.10,p.u.,模型校准锚点：100%负载、23.5°C海温时目标PUE,场景锚点
+reference_sea_temperature,23.5,°C,对应设计PUE的海水温度（暂用，后续由海水数据均值替换）,暂定
+cdm_capacity_min,440,kW,C8000系列CDM最小换热量,官方参考
+cdm_capacity_max,1320,kW,C8000系列CDM最大换热量,官方参考
+cold_source_temp_min,15,°C,CDM允许最低进水温度,官方参考
+cold_source_temp_max,35,°C,CDM允许最高进水温度,官方参考
+cooling_fixed_power,0.05,MW,冷却系统固定功耗（泵、控制器等）,工程假设
+cooling_linear_coeff,0.03410556,—,冷却功率随IT负载线性系数,由PUE=1.10反推
+cooling_quadratic_coeff,0.0001,1/MW,冷却功率随IT负载二次系数,敏感性假设
+temperature_coefficient,0.002,1/°C,海温升高导致的冷却功耗增加系数,敏感性假设
+fixed_auxiliary_power,0.10,MW,监控、照明、网络等固定辅助功耗,工程假设
+thermal_time_constant,1.0,h,冷却系统热惯性时间常数,工程假设
+cooling_power_min,0.05,MW,冷却功率非负下限,边界约束

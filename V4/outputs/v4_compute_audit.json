@@ -1,0 +1,25 @@
+{
+  "existing_model_audit": {
+    "max_rigid_balance_residual": 0.0,
+    "max_flex_queue_residual": 0.0,
+    "max_service_mapping_residual": 8.881784197001252e-16,
+    "max_piecewise_power_error_mw": 3.981250000784087e-06,
+    "max_power_cap_violation_mw": 0.0,
+    "max_fiber_capacity_violation_mw_it": 0.0,
+    "terminal_flex_queue_mwh_it": 0.0,
+    "passed": true
+  },
+  "existing_solver": {
+    "success": true,
+    "status": 0,
+    "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "objective_minimized_yuan_excluding_constant_idle_cost": -1019504.5069408909,
+    "iterations": 71
+  },
+  "normalization": "MWh-CS = GPUh * equivalent_gpu_it_power_kw / 1000",
+  "normalization_status": "[假设值，待企业调研校准]",
+  "dispatch_request_source": "4.9 hourly request",
+  "h5py_available": false,
+  "sea_temperature_fallback_allowed": true,
+  "sea_temperature_note": "缺少h5py时使用4.6既有配置的23.5°C回退值 [假设值，待企业调研校准]"
+}
