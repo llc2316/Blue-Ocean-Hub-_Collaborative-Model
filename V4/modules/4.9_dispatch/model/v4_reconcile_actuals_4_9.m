@@ -10,8 +10,16 @@ assert(all(raw>=-cfg.commonBus.balanceToleranceMW), ...
     'Committed responses exceed available supply; redispatch is required.');
 actual=struct;
 actual.spillMW=max(0,raw);
-actual.criticalUnservedMW=dispatch.computeUnservedPlannedMW;
+actual.computePowerUnservedMW=dispatch.computeUnservedPlannedMW;
+actual.commonAuxUnservedMW=dispatch.commonAuxUnservedPlannedMW;
+actual.criticalUnservedMW=actual.computePowerUnservedMW+actual.commonAuxUnservedMW;
 actual.marineUnservedMW=p47.service.marineUnservedMW;
 actual.totalUnservedMW=actual.criticalUnservedMW+actual.marineUnservedMW;
 actual.preSpillResidualMW=raw;
+actual.redispatchRequired=(actual.spillMW>cfg.commonBus.balanceToleranceMW) & ...
+    (actual.marineUnservedMW>cfg.commonBus.balanceToleranceMW | ...
+     actual.computePowerUnservedMW>cfg.commonBus.balanceToleranceMW);
+assert(~any(actual.redispatchRequired), ...
+    ['Actual response contains spill while a dispatchable electric load remains unserved. ' ...
+     'A second 4.9 request-response pass is required before COMMIT.']);
 end

@@ -10,6 +10,9 @@ def main() -> None:
     ap.add_argument('--hours',type=int,default=24)
     ap.add_argument('--cap-mw',type=float,default=10.0)
     ap.add_argument('--request')
+    ap.add_argument(
+        '--mode', choices=('sla', 'power_following'), default='sla',
+        help='sla is the integrated operating model; power_following is an infinite-backlog absorption benchmark')
     args=ap.parse_args()
     root=Path(args.module_root).resolve()
     sys.path.insert(0,str(root/'src'))
@@ -29,8 +32,16 @@ def main() -> None:
         h5py_available=False
     from udc_dc_only.config import load_config
     from udc_dc_only.data_loader import load_inputs
-    from udc_dc_only.model import solve_dc_only
+    if args.mode == 'sla':
+        from udc_dc_only.model import solve_dc_only
+        override_path=root/'config'/'power_shortage_test.json'
+    else:
+        from udc_dc_only.raw_model import solve_dc_only
+        override_path=root/'config'/'raw_power_following.json'
+    # Both mode files are scenario overrides.  Start from the complete
+    # validated default so either entry point receives all required keys.
     cfg=load_config(root/'config'/'default.json')
+    cfg.update(json.loads(override_path.read_text(encoding='utf-8')))
     cfg.update({'simulation_hours':args.hours,'power_interface_mode':'constant',
         'constant_dc_power_cap_mw':args.cap_mw,'enforce_terminal_flex_queue':False,
         'allow_invalid_sea_temperature_fallback':True,
@@ -54,8 +65,17 @@ def main() -> None:
     h['compute_served_mwh_cs']=h['total_gpu_hours']*factor
     h['compute_queue_mwh_cs']=h['flex_queue_mwh_it']
     h['dc_aux_power_mw']=h['dc_power_mw']-h['it_power_mw']
+    h['rigid_unserved_mwh_cs']=h['rigid_unserved_mwh_it']
+    h['flex_overdue_mwh_cs']=h['flex_sla_overdue_mwh_it']
+    h['spot_dropped_mwh_cs']=h['spot_dropped_mwh_it']
+    h['dc_online_min_mw']=h['dc_base_power_mw']
+    h['dc_online']=h['dc_operational']
+    h['compute_model_mode']=args.mode
     cols=['dc_power_mw','it_power_mw','dc_aux_power_mw',
-          'compute_served_mwh_cs','compute_queue_mwh_cs','pue']
+          'compute_served_mwh_cs','compute_queue_mwh_cs',
+          'rigid_unserved_mwh_cs','flex_overdue_mwh_cs',
+          'spot_dropped_mwh_cs','dc_online_min_mw','dc_online',
+          'compute_model_mode','pue']
     out=Path(args.output); out.parent.mkdir(parents=True,exist_ok=True)
     h[cols].to_csv(out,index=False)
     (out.parent/'v4_compute_audit.json').write_text(json.dumps({
@@ -63,6 +83,12 @@ def main() -> None:
         'normalization':'MWh-CS = GPUh * equivalent_gpu_it_power_kw / 1000',
         'normalization_status':'[假设值，待企业调研校准]',
         'dispatch_request_source':'4.9 hourly request' if args.request else 'constant bridge cap',
+        'compute_model_mode':args.mode,
+        'mode_meaning':(
+            'task arrivals, queue and SLA accounting'
+            if args.mode == 'sla'
+            else 'infinite-backlog power-following absorption benchmark; not a rigid-task SLA model'
+        ),
         'h5py_available':h5py_available,
         'sea_temperature_fallback_allowed':True,
         'sea_temperature_note':'缺少h5py时使用4.6既有配置的23.5°C回退值 [假设值，待企业调研校准]'},ensure_ascii=False,indent=2),encoding='utf-8')

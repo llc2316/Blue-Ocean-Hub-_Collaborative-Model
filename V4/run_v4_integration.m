@@ -31,7 +31,7 @@ Tc=table(dispatch.computeRequestedMW,'VariableNames',{'compute_requested_mw'});
 writetable(Tc,computeRequestCsv);
 pyScript=fullfile(here,'modules','4.6_compute','integration','v4_compute_bridge.py');
 dcRoot=fullfile(here,'modules','4.6_compute','DC_model_v2_1');
-cmd=sprintf('python "%s" --module-root "%s" --output "%s" --request "%s" --hours %d', ...
+cmd=sprintf('python "%s" --module-root "%s" --output "%s" --request "%s" --hours %d --mode sla', ...
     pyScript,dcRoot,computeCsv,computeRequestCsv,N);
 [status,msg]=system(cmd); assert(status==0,'4.6 bridge failed: %s',msg);
 C=readtable(computeCsv,'VariableNamingRule','preserve'); assert(height(C)==N);
@@ -43,6 +43,11 @@ p46.state.computeQueueMWhCS=C.compute_queue_mwh_cs;
 p46.service.computeServedMWhCS=C.compute_served_mwh_cs;
 p46.service.pITActualMW=C.it_power_mw;
 p46.service.pDCAuxActualMW=C.dc_aux_power_mw;
+p46.service.computeRigidUnservedMWhCS=C.rigid_unserved_mwh_cs;
+p46.service.computeFlexOverdueMWhCS=C.flex_overdue_mwh_cs;
+p46.service.computeSpotDroppedMWhCS=C.spot_dropped_mwh_cs;
+p46.service.pDCOnlineMinMW=C.dc_online_min_mw;
+p46.service.computeModelMode=string(C.compute_model_mode);
 p46.audit.modelOrigin=dcRoot;
 p46.audit.serviceNormalization='MWh-CS = GPUh * equivalent_gpu_it_power_kw / 1000 [假设值，待企业调研校准]';
 validate_module_packet_4_2(p46,'4.6',cfg,true);
@@ -50,7 +55,8 @@ validate_module_packet_4_2(p46,'4.6',cfg,true);
 req45=dispatch.req45;
 exportReq=dispatch.exportRequestedMW;
 marineReq=dispatch.marineRequestedMW;
-marineAvailable=dispatch.marineAllocatedMW;
+redispatch46=v4_redispatch_after_compute_4_9(cfg,dispatch,C.dc_power_mw);
+marineAvailable=redispatch46.marineAllocatedMW;
 state0=struct('bessEnergyMWh',cfg.bess.socInitial*cfg.bess.energyMWh, ...
     'h2InventoryKg',cfg.hydrogen.storageInitialKg);
 prov45=v4_storage_hydrogen_response(cfg,timeH,req45,state0,zeros(N,1));
@@ -112,7 +118,8 @@ p48=v4_evaluate_objectives_4_8(cfg,p43,p44,p45,p46,p47,p49,[]);
 
 out=struct('cfg',cfg,'packet4_3',p43,'packet4_4',p44,'packet4_5',p45, ...
     'packet4_6',p46,'packet4_7',p47,'packet4_8',p48,'packet4_9',p49, ...
-    'dispatchActual',actual49,'schedulerId',p49.audit.schedulerId, ...
+    'dispatchActual',actual49,'redispatchAfterCompute',redispatch46, ...
+    'schedulerId',p49.audit.schedulerId, ...
     'assumptionNotice','[假设值，待企业调研校准]');
 save(fullfile(outDir,'v4_integration_result.mat'),'out');
 S=table(timeH,p43.ports.source.actualMW,p45.ports.bessCharge.actualMW, ...

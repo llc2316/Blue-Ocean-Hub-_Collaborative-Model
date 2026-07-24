@@ -32,16 +32,16 @@ integration/common/         跨模块公共端口填充工具
 manifests/                   源目录与V4快照逐文件SHA-256清单
 ```
 
-开发目录中重新纳入源快照：
+旧研发树仍位于V4同级目录时，可重新纳入源快照：
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\build_v4_snapshot.ps1
 ```
 
-若V4不位于源项目根目录下一层，可显式指定源项目根目录：
+当前项目已将旧研发树移入历史归档。只有明确需要重建源快照时，才显式指定归档中的源项目快照：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\build_v4_snapshot.ps1 -SourceRoot "源项目根目录"
+powershell -ExecutionPolicy Bypass -File .\build_v4_snapshot.ps1 -SourceRoot "..\90_历史工作归档\2026-07-23_V4前研发资料\01_模块研发源资料"
 ```
 
 打包或移动后进行包内自校验：
@@ -73,7 +73,7 @@ BLUE HUB CH4 V4: ALL TESTS PASSED
 
 结果写入`outputs/v4_integration_result.mat`、`outputs/v4_hourly_summary.csv`和`outputs/v4_objective_summary.csv`。
 
-开发构建时仍检查4.1、4.2、4.4—4.7及4.8—4.9目标架构原文与V4副本的一致性；交付运行时改为核验包内运行/文档文件的相对路径、大小和SHA-256，不依赖原始项目目录。4.3属于择优合并后的V4派生模块，以来源说明和动态验收保证可追溯性。详细统计见`V4模块纳入与匹配检查报告.md`。
+开发重建时仍检查4.1、4.2、4.4—4.7及4.8—4.9目标架构原文与V4副本的一致性；普通运行与交付校验只核验包内运行/文档文件的相对路径、大小和SHA-256，不依赖历史归档。4.3属于择优合并后的V4派生模块，以来源说明和动态验收保证可追溯性。详细统计见`V4模块纳入与匹配检查报告.md`。
 
 ## 重要边界
 

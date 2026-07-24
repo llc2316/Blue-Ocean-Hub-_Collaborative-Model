@@ -7,8 +7,8 @@ $v4Root=Split-Path -Parent $MyInvocation.MyCommand.Path
 $manifestDir=Join-Path $v4Root 'manifests'
 $packageManifest=Join-Path $manifestDir 'v4_package_manifest.csv'
 
-$exclude='\\(__pycache__|outputs|输出|previews|render|inspection|运行结果|\.git|node_modules|\.uv-cache)(\\|$)'
-$packageExclude='\\(manifests|outputs|输出|previews|render|inspection|运行结果|\.git|node_modules|\.uv-cache|__pycache__)(\\|$)'
+$exclude='\\(__pycache__|outputs|输出|previews|render|inspection|运行结果|\.git|[^\\]*node_modules[^\\]*|\.uv-cache)(\\|$)'
+$packageExclude='\\(manifests|outputs|输出|previews|render|inspection|运行结果|\.git|[^\\]*node_modules[^\\]*|\.uv-cache|__pycache__)(\\|$)'
 
 function Test-PortablePackage {
     if(-not (Test-Path -LiteralPath $packageManifest -PathType Leaf)){

@@ -8,8 +8,12 @@ packet.state.computeQueueMWhCS=repmat(cfg.compute.queueInitialMWhCS,N,1);
 packet.service.computeServedMWhCS=zeros(N,1);
 packet.service.pITActualMW=zeros(N,1);
 packet.service.pDCAuxActualMW=zeros(N,1);
+packet.service.pDCOnlineMinMW=repmat(cfg.compute.facilityMinMW,N,1);
+packet.service.computeModelMode=repmat("SLA_ELASTIC_PRIMARY",N,1);
 packet.quality.dataSourceType="4.6_DECLARED_BOUNDARY";
 packet.quality.calibrationVersion="UNCALIBRATED";
 packet.audit.boundaryMeaning='Maximum facility power available to 4.9; no dispatch performed.';
+packet.audit.onlineMinimumMeaning=['dcFacility.minMW remains the unconditional lower bound (zero when shutdown is allowed); ' ...
+    'pDCOnlineMinMW is the conditional minimum after the facility is online.'];
 validate_module_packet_4_2(packet,'4.6',cfg,true);
 end

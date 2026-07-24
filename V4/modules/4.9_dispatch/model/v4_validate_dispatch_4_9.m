@@ -5,7 +5,8 @@ errors={}; N=numel(packet.axis.timeH);
 if ~strcmp(packet.meta.moduleId,'4.9'), errors{end+1}='moduleId must be 4.9.'; end %#ok<AGROW>
 if ~strcmp(packet.meta.phase,'REQUEST'), errors{end+1}='4.9 packet phase must be REQUEST.'; end %#ok<AGROW>
 required={'exportRequestedMW','marineRequestedMW','marineAllocatedMW', ...
-    'computeRequestedMW','h2DeliveryCapKg','spillPlannedMW', ...
+    'computeRequestedMW','computeNominalMW','h2DeliveryCapKg','spillPlannedMW', ...
+    'commonAuxUnservedPlannedMW','computeDeferredPlannedMW', ...
     'unservedPlannedMW','bessEnergyPlanMWh'};
 for k=1:numel(required)
     if ~isfield(d,required{k}) || numel(d.(required{k}))~=N
@@ -28,6 +29,9 @@ if isempty(errors)
     if any(d.computeRequestedMW>p46Boundary.ports.dcFacility.maxMW+1e-9)
         errors{end+1}='Compute request exceeds the 4.6 boundary.'; %#ok<AGROW>
     end
+    if any(d.computeRequestedMW>1e-9 & d.computeRequestedMW<cfg.compute.facilityMinMW-1e-9)
+        errors{end+1}='Compute request must be zero or at least the online minimum.'; %#ok<AGROW>
+    end
     if any(d.marineAllocatedMW>d.marineRequestedMW+1e-9)
         errors{end+1}='Marine allocation exceeds requested demand.'; %#ok<AGROW>
     end
@@ -46,7 +50,7 @@ if isempty(errors)
         errors{end+1}='4.9 physical planned closure exceeds tolerance.'; %#ok<AGROW>
     end
     expectedUnserved=(d.marineRequestedMW-d.marineAllocatedMW) ...
-        +(d.computeNominalMW-d.computeRequestedMW);
+        +d.computeUnservedPlannedMW+d.commonAuxUnservedPlannedMW;
     if max(abs(expectedUnserved-d.unservedPlannedMW))>1e-9
         errors{end+1}='Unserved demand accounting is inconsistent.'; %#ok<AGROW>
     end
