@@ -1,0 +1,14 @@
+metric,value,unit,note
+solver_mode,NaN,-,MILP
+rated_h2_output,1761.4937466972,kg/h,100 MW / 56.77 kWh/kg
+full_load_daily_h2,42.2758499207328,t/d,额定点理论值
+full_load_water,28.0077505724855,m3/h,
+minimum_continuous_output,352.29874933944,kg/h,
+demo_h2_production,23.7,t/24h,24 h演示结果，非实测
+demo_h2_sold,23.7,t/24h,24 h演示结果，非实测
+demand_satisfaction,100,%,24 h演示结果，非实测
+electrolyzer_utilization,56.060375,%,24 h演示结果，非实测
+export_energy,10586.3404736842,MWh,24 h演示结果，非实测
+curtailment_energy,317.175,MWh,24 h演示结果，非实测
+operating_value,5233.15305894737,kCNY/24h,24 h演示结果，非实测
+max_power_balance_residual,4.13056113757193e-13,MW,24 h演示结果，非实测

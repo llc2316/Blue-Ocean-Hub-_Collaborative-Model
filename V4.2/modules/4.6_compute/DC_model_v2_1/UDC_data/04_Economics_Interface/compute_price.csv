@@ -1,0 +1,5 @@
+task_type,price_yuan_per_gpu_h,reference_sku,reference_date,source_url,source_type,mapping_status
+rigid_inference,7.58,H20,2026-07-25,https://backup.autodl.com/,公开市场数据网站_企业公开报价,任务类型到GPU型号的映射为[假设值，待企业调研校准]
+flexible_batch,4.98,A800,2026-07-25,https://backup.autodl.com/,公开市场数据网站_企业公开报价,任务类型到GPU型号的映射为[假设值，待企业调研校准]
+continuous_training,8.88,H800,2026-07-25,https://backup.autodl.com/,公开市场数据网站_企业公开报价,任务类型到GPU型号的映射为[假设值，待企业调研校准]
+optional_job,2.78,RTX5090,2026-07-25,https://backup.autodl.com/,公开市场数据网站_企业公开报价,任务类型到GPU型号的映射为[假设值，待企业调研校准]
