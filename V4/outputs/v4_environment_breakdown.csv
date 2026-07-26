@@ -1,0 +1,6 @@
+scenarioId,item,value,unit,dataStatus
+interface_smoke,annualizedEmbodiedEmissionKgCO2e,0,kgCO2e,[模型仿真结果；排放因子含假设值]
+interface_smoke,sourceEmissionKgCO2e,8953.18544416351,kgCO2e,[模型仿真结果；排放因子含假设值]
+interface_smoke,bessThroughputEmissionKgCO2e,259.140335650093,kgCO2e,[模型仿真结果；排放因子含假设值]
+interface_smoke,gridImportEmissionKgCO2e,0,kgCO2e,[模型仿真结果；排放因子含假设值]
+interface_smoke,hydrogenDeliveryEmissionKgCO2e,564.518578548022,kgCO2e,[模型仿真结果；排放因子含假设值]

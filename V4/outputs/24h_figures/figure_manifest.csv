@@ -1,0 +1,12 @@
+﻿kind,file
+final,01_最终KPI汇总.png
+final,02_经济收支分项.png
+final,03_环境与可靠性分项.png
+timeseries,01_多源供能时序.png
+timeseries,02_功率分配与供需状态.png
+timeseries,03_电池功率与SOC时序.png
+timeseries,04_制氢储氢交付时序.png
+timeseries,05_算力功率队列收益时序.png
+timeseries,06_多形态产品交付时序.png
+timeseries,07_响应后再调度时序.png
+timeseries,08_母线残差时序.png

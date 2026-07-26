@@ -1,0 +1,8 @@
+Module,SnapshotStatus,DirectSchemaV2Compatibility,V4ActiveImplementation,Treatment,Verification
+4.1,MATCH,YES,library/4.1边界与口径,原样冻结快照,SHA-256匹配
+4.2,MATCH,YES,library/4.2变量与接口,原样冻结快照并作为唯一公共库,SHA-256匹配且6项测试通过
+4.3,MATCH,ADAPTER_REQUIRED,modules/4.3_source/runtime + modules/4.3_source/integration/v4_source_adapter.m,保留W/var/s设备模型并转换MW/Mvar/h及MP-03,哈希匹配且Version3测试6项通过
+4.4,MATCH,NO_FOR_LEGACY_CORE,modules/4.4_bus/integration/v4_bus_ledger.m,精简保留原reference_model但旁路有符号储能/重复损耗/隐式备用逻辑,V4实际量总账残差验收通过
+4.5,MATCH,ADAPTER_REQUIRED,modules/4.5_storage_hydrogen/integration,纳入原脚本并提取SOC/SEC/库存关系；跨模块调度不进入4.5,V4状态与两阶段氢交付验收通过
+4.6,MATCH,ADAPTER_REQUIRED,modules/4.6_compute/DC_model_v2_1 + integration/v4_compute_bridge.py,直接调用原DC-only求解器并映射MWh-CS标准接口,原求解器最优且内部audit通过
+4.7,MATCH,PARTIAL_DIRECT,modules/4.7_outputs/delivery_model + integration/v4_output_bridge.py,直接使用外送和海洋函数；旁路重复PUE/制氢/总平衡/总目标,原生17项测试及V4交付接口通过
