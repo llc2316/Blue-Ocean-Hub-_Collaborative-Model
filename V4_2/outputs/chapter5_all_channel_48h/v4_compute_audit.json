@@ -1,0 +1,30 @@
+{
+  "existing_model_audit": {
+    "max_power_cap_violation_mw": 0.0,
+    "max_base_power_shortfall_mw": 0.0,
+    "max_it_capacity_violation_mw_it": 0.0,
+    "max_power_following_error_mw": 0.0,
+    "minimum_dc_power_headroom_mw": 0.0,
+    "passed": true
+  },
+  "existing_solver": {
+    "success": true,
+    "status": 0,
+    "message": "Power-following solution completed.",
+    "solver_method": "Vectorized bisection inversion of facility power curve",
+    "iterations": 64
+  },
+  "normalization": "MWh-CS = GPUh * equivalent_gpu_it_power_kw / 1000",
+  "normalization_status": "[假设值，待企业调研校准]",
+  "dispatch_request_source": "4.9 hourly request",
+  "compute_model_mode": "power_following",
+  "compute_unit_count": 16,
+  "compute_unit_facility_cap_mw": 7.618080005,
+  "aggregate_physical_facility_cap_mw": 121.88928008,
+  "aggregation_method": "sequential identical units; extensive outputs summed",
+  "aggregation_status": "[假设值，待企业调研校准]",
+  "mode_meaning": "infinite-backlog power-following absorption benchmark; not a rigid-task SLA model",
+  "h5py_available": false,
+  "sea_temperature_fallback_allowed": true,
+  "sea_temperature_note": "缺少h5py时使用4.6既有配置的23.5°C回退值 [假设值，待企业调研校准]"
+}

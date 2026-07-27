@@ -1,0 +1,14 @@
+checkName,passed,evidence
+早期新能源不足触发电池放电,1,max early discharge 1.257 MW
+上升阶段触发电池充电,1,max rise charge 48.662 MW
+算力柔性负荷启动,1,max compute 120.000 MW
+海缆达到送端上限,1,max cable send 200.000 MW
+富余电力触发制氢,1,electrolyzer energy 2152.446 MWh
+电解槽达到额定功率,1,max electrolyzer 100.000 MW
+全通道饱和后出现弃电,1,spill energy 1338.552 MWh
+骤降阶段电池放电,1,max drop discharge 13.126 MW
+骤降阶段算力下降,1,compute pre/drop 120.000 / 0.000 MW
+骤降阶段不继续弃电,1,max drop spill 0.000e+00 MW
+不存在弃电与电气/海洋缺供并存,1,coexistence count 0
+船运氢气交付非零,1,ship-delivered H2 37156.891 kg
+公共母线残差合格,1,max residual 5.956e-14 MW
