@@ -1,0 +1,47 @@
+# Python cache/runtime artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local IDE/editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Generated data and model output artifacts
+outputs/
+**/outputs/
+*.csv
+*.mat
+*.json
+
+# Generated figures and image assets
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tif
+*.tiff
+*.webp
+*.svg
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.bak
+*.backup
