@@ -1,0 +1,10 @@
+parameter,value,unit,description,source_type
+it_capacity,7.08,MW,算力中心额定IT容量,阳江UDC参考_[假设值，待企业调研校准]
+cabinet_count,180,台,机柜总数,阳江UDC参考_[假设值，待企业调研校准]
+equivalent_gpu_it_power_kw,1.275,kW/GPU,DGX H100/H200最大系统功率10.2kW除以8块GPU的公开代理值；含服务器内CPU和内存但不含外部网络与存储,NVIDIA官方产品文档_公开代理值
+idle_power_ratio,0.30,p.u.,空载功率占额定容量比例；建议敏感性范围0.25至0.35,[假设值，待企业调研校准]
+distribution_efficiency,0.96,p.u.,380V直流供电效率,[假设值，待企业调研校准]
+power_curve_exponent,1.0,-,负载功率曲线指数；1表示线性,[假设值，待企业调研校准]
+heat_conversion_ratio,1.0,p.u.,电能转化为热能的比例,[假设值，待企业调研校准]
+minimum_load_ratio,0.10,p.u.,最低允许负载率,[假设值，待企业调研校准]
+maximum_load_ratio,1.00,p.u.,最高允许负载率,模型边界
