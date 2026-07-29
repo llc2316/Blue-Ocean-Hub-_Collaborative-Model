@@ -1,0 +1,5 @@
+scenarioId,scenarioLabel,shareElectricity,shareHydrogen,shareCompute,totalProductCapacityMW,powerCableMW,electrolyzerMW,computeFacilityMW,secKWhPerKg,h2RatedProductionKgPerH
+mix_E100,Power only,1,0,0,420,420,0,0,56.77,0
+mix_H100,Hydrogen only,0,1,0,420,0,420,0,56.77,7398.27373612824
+mix_C100,Compute only,0,0,1,420,0,0,420,56.77,0
+mix_E40_H30_C30,Triplex balanced,0.4,0.3,0.3,420,168,126,126,56.77,2219.48212083847

@@ -1,0 +1,9 @@
+phaseCode,phaseName,startH,endH
+P1_SHORTAGE_DISCHARGE,新能源不足与电池放电,0,5
+P2_PV_RISE_CHARGE,光伏上升与电池充电,6,11
+P3_COMPUTE_START,算力任务到达并启动,12,17
+P4_CABLE_SATURATION,受端放开且海缆达到上限,18,23
+P5_ELECTROLYSIS_START,氢价窗口打开并启动制氢,24,29
+P6_ALL_CHANNELS_CURTAIL,储能满、算氢缆满载后弃电,30,35
+P7_RENEWABLE_DROP,风光骤降、柔性负荷削减与电池放电,36,39
+P8_RECOVERY_TERMINAL,资源恢复并回补期末电量,40,47

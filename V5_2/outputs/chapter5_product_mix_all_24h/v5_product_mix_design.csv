@@ -1,0 +1,23 @@
+scenarioId,scenarioLabel,shareElectricity,shareHydrogen,shareCompute,totalProductCapacityMW,powerCableMW,electrolyzerMW,computeFacilityMW,secKWhPerKg,h2RatedProductionKgPerH
+mix_E100,"Power only",1,0,0,420,420,0,0,56.77,0
+mix_H100,"Hydrogen only",0,1,0,420,0,420,0,56.77,7398.27373612824
+mix_C100,"Compute only",0,0,1,420,0,0,420,56.77,0
+mix_E80_H20,"Power + hydrogen, power-led",0.8,0.2,0,420,336,84,0,56.77,1479.65474722565
+mix_E60_H40,"Power + hydrogen",0.6,0.4,0,420,252,168,0,56.77,2959.30949445129
+mix_E40_H60,"Power + hydrogen, H2-led",0.4,0.6,0,420,168,252,0,56.77,4438.96424167694
+mix_E20_H80,"Power + hydrogen, high-H2",0.2,0.8,0,420,84,336,0,56.77,5918.61898890259
+mix_E80_C20,"Power + compute, power-led",0.8,0,0.2,420,336,0,84,56.77,0
+mix_E60_C40,"Power + compute, moderate compute",0.6,0,0.4,420,252,0,168,56.77,0
+mix_E40_C60,"Power + compute, compute-led",0.4,0,0.6,420,168,0,252,56.77,0
+mix_E20_C80,"Power + compute, high-compute",0.2,0,0.8,420,84,0,336,56.77,0
+mix_H80_C20,"Hydrogen + compute, H2-led",0,0.8,0.2,420,0,336,84,56.77,5918.61898890259
+mix_H60_C40,"Hydrogen + compute, moderate compute",0,0.6,0.4,420,0,252,168,56.77,4438.96424167694
+mix_H40_C60,"Hydrogen + compute, compute-led",0,0.4,0.6,420,0,168,252,56.77,2959.30949445129
+mix_H20_C80,"Hydrogen + compute, high-compute",0,0.2,0.8,420,0,84,336,56.77,1479.65474722565
+mix_E60_H20_C20,"Triplex power-biased",0.6,0.2,0.2,420,252,84,84,56.77,1479.65474722565
+mix_E50_H30_C20,"Triplex power-led",0.5,0.3,0.2,420,210,126,84,56.77,2219.48212083847
+mix_E40_H30_C30,"Triplex balanced",0.4,0.3,0.3,420,168,126,126,56.77,2219.48212083847
+mix_E30_H30_C40,"Triplex compute-led",0.3,0.3,0.4,420,126,126,168,56.77,2219.48212083847
+mix_E20_H40_C40,"Triplex H2/compute-led",0.2,0.4,0.4,420,84,168,168,56.77,2959.30949445129
+mix_E20_H60_C20,"Triplex H2-biased",0.2,0.6,0.2,420,84,252,84,56.77,4438.96424167694
+mix_E20_H20_C60,"Triplex high-compute",0.2,0.2,0.6,420,84,84,252,56.77,1479.65474722565
