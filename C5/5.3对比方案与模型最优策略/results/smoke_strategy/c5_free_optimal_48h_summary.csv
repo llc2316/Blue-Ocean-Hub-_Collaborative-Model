@@ -1,0 +1,2 @@
+scenarioId,strategyType,realizedElectricityInputShare,realizedHydrogenInputShare,realizedComputeInputShare,eElectricityInputMWh,eHydrogenInputMWh,eFlexibleComputeInputMWh,renewableUtilization,eCurtailmentMWh,ensMWh,outputRevenueCNY,operatingCostCNY,economicNetCostCNY,operatingNetBenefitCNY,exitflag,auditPass,evidenceStatus
+OPT_FREE_ECON_48H,MODEL_DERIVED_OPTIMAL,0.534259508040199,0.155246830653267,0.310493661306534,4129.62639527318,1200,2400,0.79677206045329,2424.20632760659,0,6141869.36455873,419812.271313348,-5722057.09324539,5722057.09324539,1,1,[模型仿真结果；场景与参数为假设值，待企业调研校准]
