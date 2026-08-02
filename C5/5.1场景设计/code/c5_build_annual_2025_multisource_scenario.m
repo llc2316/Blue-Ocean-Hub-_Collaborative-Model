@@ -157,11 +157,16 @@ sourceCase.tidal=struct('sourceId','TIDAL_40MW_INTERNAL_PROXY', ...
 in=legacy.input;
 in.sourceCase=sourceCase;
 computeScale=cfg.compute.facilityMaxMW/legacyComputeCapacityMW;
+% The project defines the subsea compute fleet as a flexible load. Convert
+% the legacy "rigid" arrival trace into interruptible capacity instead of
+% counting it as critical ENS. This operating assumption is
+% [假设值，待企业调研校准].
+legacyComputeBaseMW=in.pComputeBaseDemandMW;
 in.pComputeFlexibleMaxMW=min( ...
-    cfg.compute.facilityMaxMW-in.pComputeBaseDemandMW, ...
-    legacy.input.pComputeFlexibleMaxMW*computeScale);
+    cfg.compute.facilityMaxMW, ...
+    legacy.input.pComputeFlexibleMaxMW*computeScale+legacyComputeBaseMW);
+in.pComputeBaseDemandMW=zeros(hours,1);
 in.pComputeFlexibleMaxMW(warning|passage|recovery)=0;
-in.pComputeBaseDemandMW(passage)=0;
 channelAvailability=ones(hours,1);
 channelAvailability(passage)=0;
 channelAvailability(recovery)=0.5;
@@ -200,5 +205,6 @@ scenario.evidence.extremeEventBoundary= ...
      'NOT_A_HISTORICAL_EVENT_CLAIM'];
 scenario.evidence.computeScalingBoundary= ...
     ['ONE_8P2MW_CLUSTER_FLEX_SHAPE_SCALED_TO_120MW_FLEET; ', ...
-     'BASE_CLUSTER_RETAINED; [假设值，待企业调研校准]'];
+     'ALL_COMPUTE_TASKS_INTERRUPTIBLE; NO_COMPUTE_BASE_ENS; ', ...
+     '[假设值，待企业调研校准]'];
 end

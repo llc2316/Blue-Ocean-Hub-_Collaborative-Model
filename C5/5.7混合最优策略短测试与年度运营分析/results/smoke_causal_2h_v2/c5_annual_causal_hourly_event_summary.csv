@@ -1,2 +1,0 @@
-eventCode,hours,eAvailableMWh,eSourceUsedMWh,eCurtailmentMWh,ensMWh,eElectricityInputMWh,eHydrogenInputMWh,eFlexibleComputeInputMWh
-NORMAL,2,292.809915532413,292.809915532413,0,0,170.135842118424,-1.4210854715202e-14,3.49965477965863
