@@ -61,8 +61,9 @@ INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/ctex/scheme/cte
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/ctex/config/ctex-name-utf8.cfg
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/ctex/config/ctex-name-utf8.cfg
-INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/ctex/fontset/ctex-fontset-fandol.def
-INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/ctex/fontset/ctex-fontset-fandol.def
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/ctex/fontset/ctex-fontset-windows.def
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/ctex/fontset/ctex-fontset-windows.def
+INPUT c:/Windows/Fonts/msyh.ttc
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/ctex/config/ctex.cfg
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/ctex/config/ctex.cfg
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/geometry/geometry.sty
@@ -316,6 +317,76 @@ INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/translations/tr
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionary-english.trsl
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmib10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmib10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmib10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbsy10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbsy10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbsy10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
+OUTPUT main.xdv
+INPUT ./main.toc
+INPUT ./main.toc
+INPUT main.toc
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi9.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmsy9.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex9.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx9.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmib10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmib10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmib10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbsy10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbsy10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbsy10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr9.tfm
+OUTPUT main.toc
+INPUT ./chapters/chapter1.tex
+INPUT ./chapters/chapter1.tex
+INPUT ./chapters/chapter1.tex
+INPUT ./chapters/chapter1.tex
+INPUT chapters/chapter1.tex
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
@@ -324,15 +395,9 @@ INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmsy6
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
-INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
-INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
-INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
-INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
-INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
-INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
@@ -348,33 +413,6 @@ INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
-OUTPUT main.xdv
-INPUT ./main.toc
-INPUT ./main.toc
-INPUT main.toc
-OUTPUT main.toc
-INPUT ./main.lof
-INPUT ./main.lof
-INPUT main.lof
-INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm
-INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
-INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
-INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
-INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
-INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
-INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmib10.tfm
-INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbsy10.tfm
-INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
-OUTPUT main.lof
-INPUT ./main.lot
-INPUT ./main.lot
-INPUT main.lot
-OUTPUT main.lot
-INPUT ./chapters/chapter1.tex
-INPUT ./chapters/chapter1.tex
-INPUT ./chapters/chapter1.tex
-INPUT ./chapters/chapter1.tex
-INPUT chapters/chapter1.tex
 INPUT ./chapters/chapter2.tex
 INPUT ./chapters/chapter2.tex
 INPUT ./chapters/chapter2.tex
@@ -391,6 +429,15 @@ INPUT ./figures/chapter3/fig3-1_system_architecture.png
 INPUT ./figures/chapter3/fig3-4_storage_timescales.png
 INPUT ./figures/chapter3/fig3-4_storage_timescales.png
 INPUT ./figures/chapter3/fig3-4_storage_timescales.png
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmib10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbsy10.tfm
+INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT d:/Program Files/Texlive/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
@@ -504,6 +551,27 @@ INPUT ./chapters/chapter5.tex
 INPUT ./chapters/chapter5.tex
 INPUT ./chapters/chapter5.tex
 INPUT chapters/chapter5.tex
+INPUT ./figures/chapter5/fig5-1_typical48_multisource.png
+INPUT ./figures/chapter5/fig5-1_typical48_multisource.png
+INPUT ./figures/chapter5/fig5-1_typical48_multisource.png
+INPUT ./figures/chapter5/fig5-2_typical48_strategy_comparison.png
+INPUT ./figures/chapter5/fig5-2_typical48_strategy_comparison.png
+INPUT ./figures/chapter5/fig5-2_typical48_strategy_comparison.png
+INPUT ./figures/chapter5/fig5-3_typical48_online_dispatch.png
+INPUT ./figures/chapter5/fig5-3_typical48_online_dispatch.png
+INPUT ./figures/chapter5/fig5-3_typical48_online_dispatch.png
+INPUT ./figures/chapter5/fig5-4_forecast_and_anti_jitter.png
+INPUT ./figures/chapter5/fig5-4_forecast_and_anti_jitter.png
+INPUT ./figures/chapter5/fig5-4_forecast_and_anti_jitter.png
+INPUT ./figures/chapter5/fig5-5_annual_monthly_energy.png
+INPUT ./figures/chapter5/fig5-5_annual_monthly_energy.png
+INPUT ./figures/chapter5/fig5-5_annual_monthly_energy.png
+INPUT ./figures/chapter5/fig5-6_annual_duration_and_ens.png
+INPUT ./figures/chapter5/fig5-6_annual_duration_and_ens.png
+INPUT ./figures/chapter5/fig5-6_annual_duration_and_ens.png
+INPUT ./figures/chapter5/fig5-7_typhoon_response.png
+INPUT ./figures/chapter5/fig5-7_typhoon_response.png
+INPUT ./figures/chapter5/fig5-7_typhoon_response.png
 INPUT ./chapters/chapter6.tex
 INPUT ./chapters/chapter6.tex
 INPUT ./chapters/chapter6.tex

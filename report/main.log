@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2026.2.1)  1 AUG 2026 20:45
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2026.2.1)  2 AUG 2026 22:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1347,13 +1347,15 @@ LaTeX Font Warning: Font shape `TU/SimSun(1)/b/n' undefined
 
 [5]
 
-[6])
+[6]
+
+[7])
 \tf@toc=\write4
 \openout4 = `main.toc'.
 
 
 
-[7] (./chapters/chapter1.tex
+[8] (./chapters/chapter1.tex
 第一章
 
 LaTeX Font Warning: Font shape `TU/SimSun(1)/m/it' undefined
@@ -1762,11 +1764,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 225--225
  []
 
 
-Underfull \hbox (badness 1264) in paragraph at lines 225--225
-[]|\TU/SimSun(1)/b/n/10 逐 设 备 输 入 假 设 值，|
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 227--227
 []|\TU/lmr/m/n/10 MW/\TU/SimSun(1)/b/n/10 复 合
  []
@@ -1848,11 +1845,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 234--234
  []
 
 
-Underfull \hbox (badness 1264) in paragraph at lines 234--234
-[]|\TU/SimSun(1)/b/n/10 工 艺 包 输 入 假 设 值，|
- []
-
-
 Underfull \hbox (badness 3503) in paragraph at lines 235--235
 []|\TU/SimSun(1)/b/n/10 储 氢 与 安 全 情 景 输
  []
@@ -1931,9 +1923,7 @@ Overfull \hbox (27.66998pt too wide) detected at line 56
 
 
 [41]
-
-[42]
-Overfull \hbox (138.44424pt too wide) detected at line 109
+Overfull \hbox (138.44424pt too wide) detected at line 115
 [][][]\OML/cmm/m/it/15.05624 P[] \OT1/cmr/m/n/15.05624 = \OML/cmm/m/it/15.05624
  P[] \OMS/cmsy/m/n/15.05624 ^^@ \OML/cmm/m/it/15.05624 P[];  \OT1/cmr/m/n/15.05
 624 0 \OMS/cmsy/m/n/15.05624 ^^T \OML/cmm/m/it/15.05624 P[] \OMS/cmsy/m/n/15.05
@@ -1941,20 +1931,24 @@ Overfull \hbox (138.44424pt too wide) detected at line 109
 it/15.05624 P[]\OT1/cmr/m/n/15.05624 ^^A\OML/cmm/m/it/15.05624 t[]:
  []
 
-) (./sections/4_4_battery.tex (./figures/chapter4/fig4-4_battery_model.tex)
 
-[43]
 
-[44]) (./sections/4_5_hydrogen.tex
+[42]) (./sections/4_4_battery.tex (./figures/chapter4/fig4-4_battery_model.tex)
+
+
+[43]) (./sections/4_5_hydrogen.tex
 (./figures/chapter4/fig4-5_hydrogen_model.tex)
+
+[44]
 
 [45]
 
 [46]
 
-[47]) (./sections/4_6_compute.tex
+[47]) (./sections/4_6_compute.tex (./figures/chapter4/fig4-6_compute_model.tex)
 
-[48] (./figures/chapter4/fig4-6_compute_model.tex)
+
+[48]
 
 [49]
 
@@ -1962,19 +1956,18 @@ it/15.05624 P[]\OT1/cmr/m/n/15.05624 ^^A\OML/cmm/m/it/15.05624 t[]:
 
 [51]
 
-[52]
+[52]) (./sections/4_7_power_balance.tex
 
-[53]) (./sections/4_7_power_balance.tex
-(./figures/chapter4/fig4-7_bus_ledger.tex)
-
-[54]
+[53] (./figures/chapter4/fig4-7_bus_ledger.tex)
 Overfull \hbox (132.5824pt too wide) detected at line 37
 [][][][][]
  []
 
 
 
-[55]) (./sections/4_8_objective.tex
+[54]) (./sections/4_8_objective.tex
+
+[55]
 Overfull \hbox (71.86894pt too wide) detected at line 21
 [][][][][]
  []
@@ -1999,6 +1992,14 @@ m/it/15.05624 p[] \OT1/cmr/m/n/15.05624 + \OML/cmm/m/it/15.05624 p[] \OT1/cmr/m
 [59]) (./sections/4_10_risk.tex
 
 [60]
+Overfull \hbox (15.35484pt too wide) detected at line 40
+[][][]\OML/cmm/b/it/15.05624 u[] \OT1/cmr/m/n/15.05624 = \OML/cmm/m/it/15.05624
+ ^^Y[]\OT1/cmr/m/n/15.05624 (\OMS/cmsy/m/n/15.05624 I[]\OT1/cmr/m/n/15.05624 )\
+OML/cmm/m/it/15.05624 ;  \OMS/cmsy/m/n/15.05624 I[] \OT1/cmr/m/n/15.05624 = \OM
+L/cmm/m/it/15.05624 ^^[  [] ;
+ []
+
+
 
 [61]
 
@@ -2007,14 +2008,617 @@ m/it/15.05624 p[] \OT1/cmr/m/n/15.05624 + \OML/cmm/m/it/15.05624 p[] \OT1/cmr/m
 [63]
 第五章
 
+Underfull \hbox (badness 10000) in paragraph at lines 34--34
+[]|\TU/SimSun(0)/m/n/12 合 成 机 制 验
+ []
+
+
+Underfull \hbox (badness 3954) in paragraph at lines 34--34
+[]|\TU/SimSun(0)/m/n/12 全 通 道 能 否 激 活；|  母 线、|
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--34
+[]|\TU/SimSun(0)/m/n/12 正 常 典 型 比
+ []
+
+
+Underfull \hbox (badness 2426) in paragraph at lines 34--34
+[]|\TU/SimSun(0)/m/n/12 从 年 度 正 常 候 选
+ []
+
+
+Underfull \hbox (badness 2426) in paragraph at lines 34--34
+\TU/SimSun(0)/m/n/12 中 离 线 选 取 的 同
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--34
+[]|\TU/SimSun(0)/m/n/12 年 度 在 线 验
+ []
+
+
+Underfull \hbox (badness 2426) in paragraph at lines 34--34
+[]|\TU/SimSun(0)/m/n/12 年 度 公 开 资 源 代
+ []
+
+
+Underfull \hbox (badness 2426) in paragraph at lines 34--34
+\TU/SimSun(0)/m/n/12 价 格 负 荷 及 假 设
+ []
+
+
 
 [64
 
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 51--51
+[]|\TU/SimSun(1)/m/n/15.05624 第 \TU/lmr/m/n/15.05624 4
+ []
 
-[65]) (./chapters/chapter6.tex
 
-[66]
+Overfull \hbox (19.54721pt too wide) in alignment at lines 48--53
+ [] [] [] [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--55
+[]|\TU/SimSun(1)/m/n/15.05624 第 \TU/lmr/m/n/15.05624 4
+ []
+
+
+Overfull \hbox (19.54721pt too wide) in alignment at lines 53--57
+ [] [] [] [] 
+ []
+
+
+Underfull \hbox (badness 3364) in paragraph at lines 58--58
+\TU/SimSun(1)/m/n/15.05624 备 及 源 侧 聚
+ []
+
+
+Underfull \hbox (badness 1694) in paragraph at lines 58--58
+[]|\TU/lmr/m/n/15.05624 680/80/40 MW \TU/SimSun(1)/m/n/15.05624 三 源 装
+ []
+
+
+Underfull \hbox (badness 3364) in paragraph at lines 59--59
+\TU/SimSun(1)/m/n/15.05624 力 及 海 洋 服
+ []
+
+
+Underfull \hbox (badness 3019) in paragraph at lines 59--59
+[]|\TU/SimSun(1)/m/n/15.05624 海 缆 采 用 \TU/lmr/m/n/15.05624 8% \TU/SimSun(1)/m/n
+/15.05624 固 定 损
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
+[]|\TU/lmr/m/n/15.05624 SOC\TU/SimSun(1)/m/n/15.05624 、|  充 放 互
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
+\TU/SimSun(1)/m/n/15.05624 斥、|  状 态 递 推、|
+ []
+
+
+Underfull \hbox (badness 1762) in paragraph at lines 60--61
+\TU/SimSun(1)/m/n/15.05624 有 效 \TU/lmr/m/n/15.05624 SOC \TU/SimSun(1)/m/n/15.05
+624 边 界
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 61--61
+[]|\TU/lmr/m/n/15.05624 5$\OMS/cmsy/m/n/15.05624 ^^B$\TU/lmr/m/n/15.05624 20 MW
+ PEM\TU/SimSun(1)/m/n/15.05624 、|  固
+ []
+
+
+Underfull \hbox (badness 1642) in paragraph at lines 61--61
+\TU/SimSun(1)/m/n/15.05624 定 \TU/lmr/m/n/15.05624 SEC 56.77 kWh/kg\TU/SimSun(1)
+/m/n/15.05624 、|
+ []
+
+
+Underfull \hbox (badness 3364) in paragraph at lines 63--63
+[]|\TU/SimSun(1)/m/n/15.05624 唯 一 公 共 母
+ []
+
+
+Underfull \hbox (badness 4634) in paragraph at lines 64--65
+[]|\TU/SimSun(1)/m/n/15.05624 收 入\TU/lmr/m/n/15.05624 /\TU/SimSun(1)/m/n/15.056
+24 成 本 分 账、|
+ []
+
+
+Underfull \hbox (badness 7012) in paragraph at lines 64--65
+\TU/SimSun(1)/m/n/15.05624 目\TU/lmr/m/n/15.05624 /\TU/SimSun(1)/m/n/15.05624 避 
+免\TU/lmr/m/n/15.05624 /\TU/SimSun(1)/m/n/15.05624 净 排 放
+ []
+
+
+Underfull \hbox (badness 1168) in paragraph at lines 65--65
+[]|\TU/SimSun(1)/m/n/15.05624 逐 时 \TU/lmr/m/n/15.05624 E/H/C
+ []
+
+
+Underfull \hbox (badness 3364) in paragraph at lines 65--65
+\TU/SimSun(1)/m/n/15.05624 计 划 与 可 行
+ []
+
+
+Underfull \hbox (badness 3364) in paragraph at lines 66--66
+[]|\TU/SimSun(1)/m/n/15.05624 因 果 求 解 及
+ []
+
+
+Underfull \hbox (badness 2818) in paragraph at lines 66--67
+[]|\TU/SimSun(1)/m/n/15.05624 信 息 边 界、| \TU/lmr/m/n/15.05624 8,760
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 66--67
+\TU/SimSun(1)/m/n/15.05624 小 时 求 解 状 态、|
+ []
+
+
+Overfull \hbox (8.8522pt too wide) in paragraph at lines 66--67
+\TU/lmr/m/n/15.05624 REGFM/EMT/HIL
+ []
+
+
+Overfull \hbox (19.54721pt too wide) in alignment at lines 57--68
+ [] [] [] [] 
+ []
+
+[65] [66]
+
+LaTeX Font Warning: Font shape `TU/SimSun(1)/b/it' undefined
+(Font)              using `TU/SimSun(1)/b/n' instead on input line 69.
+
+
+
+[67]
+Overfull \hbox (9.52873pt too wide) in paragraph at lines 115--115
+[]|\TU/lmr/m/n/12 80 MW/160 MWh\TU/SimSun(0)/m/n/12 ；|
+ []
+
+
+Underfull \hbox (badness 1502) in paragraph at lines 115--115
+\OML/cmm/m/it/12 ^^Q[] \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 ^^Q[] \OT1/cmr/m/n/12
+ =
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 115--115
+[]|\TU/SimSun(0)/m/n/12 上 下 各
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 115--115
+\TU/lmr/m/n/12 56.77 kWh/kg\TU/SimSun(0)/m/n/12 ；|
+ []
+
+
+Underfull \hbox (badness 1067) in paragraph at lines 115--115
+[]|\TU/SimSun(0)/m/n/12 送 端 \TU/lmr/m/n/12 200 MW\TU/SimSun(0)/m/n/12 ；|
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 115--115
+[]|\TU/SimSun(0)/m/n/12 设 施 上 限
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 115--115
+[]|\TU/SimSun(0)/m/n/12 刚 性 需 求
+ []
+
+
+
+[68]
+
+[69]
+
+[70]
+
+[71]
+
+[72]
+Underfull \hbox (badness 2142) in paragraph at lines 283--283
+[]|\TU/lmr/m/n/12 P05/\TU/SimSun(0)/m/n/12 计 划
+ []
+
+
+
+[73]
+
+[74]
+Underfull \hbox (badness 4713) in paragraph at lines 359--361
+[]\TU/SimSun(1)/m/n/15.05624 典 型 窗 口 总 可 用 新 能 源 为 \TU/lmr/m/n/15.05624 8,450.7
+99 MWh\TU/SimSun(1)/m/n/15.05624 ，|  小 时 均 值
+ []
+
+File: figures/chapter5/fig5-1_typical48_multisource.png Graphic file (type bmp)
+
+<figures/chapter5/fig5-1_typical48_multisource.png>
+
+
+[75]
+
+[76]
+File: figures/chapter5/fig5-2_typical48_strategy_comparison.png Graphic file (t
+ype bmp)
+<figures/chapter5/fig5-2_typical48_strategy_comparison.png>
+
+
+[77]
+
+[78]
+Underfull \hbox (badness 6001) in paragraph at lines 505--510
+[]\TU/SimSun(1)/m/n/15.05624 在 线 策 略 同 时 形 成 \TU/lmr/m/n/15.05624 5,368.917 MWh
+ \TU/SimSun(1)/m/n/15.05624 海 缆 受 端 电 量 和
+ []
+
+File: figures/chapter5/fig5-3_typical48_online_dispatch.png Graphic file (type 
+bmp)
+<figures/chapter5/fig5-3_typical48_online_dispatch.png>
+
+
+[79]
+File: figures/chapter5/fig5-4_forecast_and_anti_jitter.png Graphic file (type b
+mp)
+<figures/chapter5/fig5-4_forecast_and_anti_jitter.png>
+
+
+[80]
+Underfull \hbox (badness 6157) in paragraph at lines 570--575
+[]\TU/SimSun(1)/m/n/15.05624 年 度 只 运 行 在 线 先 验\TU/lmr/m/n/15.05624 –\TU/SimSun(
+1)/m/n/15.05624 后 验 策 略。|  三 源 可 用 新 能 源 合
+ []
+
+
+Underfull \hbox (badness 2941) in paragraph at lines 570--575
+\TU/SimSun(1)/m/n/15.05624 计 \TU/lmr/m/n/15.05624 2,014,114.533 MWh\TU/SimSun(1
+)/m/n/15.05624 ，|  实 际 利 用 \TU/lmr/m/n/15.05624 1,294,715.936 MWh\TU/SimSun(1)/
+m/n/15.05624 ，|  弃 电
+ []
+
+
+
+[81]
+File: figures/chapter5/fig5-5_annual_monthly_energy.png Graphic file (type bmp)
+
+<figures/chapter5/fig5-5_annual_monthly_energy.png>
+
+
+[82]
+
+[83]
+File: figures/chapter5/fig5-6_annual_duration_and_ens.png Graphic file (type bm
+p)
+<figures/chapter5/fig5-6_annual_duration_and_ens.png>
+
+
+[84]
+
+[85]
+File: figures/chapter5/fig5-7_typhoon_response.png Graphic file (type bmp)
+<figures/chapter5/fig5-7_typhoon_response.png>
+
+
+[86]
+
+[87]
+
+[88]
+Underfull \hbox (badness 10000) in paragraph at lines 820--820
+\TU/SimSun(1)/m/n/15.05624 乎 退 化 为
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 820--820
+\TU/SimSun(1)/m/n/15.05624 共 同 负 荷
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 821--821
+[]|\TU/SimSun(1)/m/n/15.05624 在 线 策 略
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 821--821
+\TU/SimSun(1)/m/n/15.05624 优 于 纯 电
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 823--823
+[]|\TU/lmr/m/n/15.05624 94.984%
+ []
+
+
+Underfull \hbox (badness 4492) in paragraph at lines 824--824
+[]|\TU/SimSun(1)/m/n/15.05624 过 境 \TU/lmr/m/n/15.05624 24 h
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 824--824
+\TU/SimSun(1)/m/n/15.05624 仅 服 务
+ []
+
+
+Underfull \hbox (badness 2478) in paragraph at lines 824--825
+[]|\TU/lmr/m/n/15.05624 160 MWh BESS \TU/SimSun(1)/m/n/15.05624 可 交 付
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 824--825
+\TU/lmr/m/n/15.05624 119.7 MWh\TU/SimSun(1)/m/n/15.05624 ，|  无 法 覆 盖
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 825--825
+[]|\TU/SimSun(1)/m/n/15.05624 过 境 期
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 825--825
+\TU/lmr/m/n/15.05624 BESS/\TU/SimSun(1)/m/n/15.05624 储 氢
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 827--827
+[]|\TU/SimSun(1)/m/n/15.05624 内 部 关 键
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 827--827
+\TU/SimSun(1)/m/n/15.05624 负 荷 仅 约
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 827--828
+[]|\TU/SimSun(1)/m/n/15.05624 当 前 主 要 为 源 侧 辅 机、|
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 827--828
+\TU/lmr/m/n/15.05624 0.25 MW \TU/SimSun(1)/m/n/15.05624 公 共 辅 机 和
+ []
+
+
+Underfull \hbox (badness 3713) in paragraph at lines 828--828
+[]|\TU/SimSun(1)/m/n/15.05624 可 用 于 统 一 比 较，|
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 829--829
+[]|\TU/lmr/m/n/15.05624 WS50M \TU/SimSun(1)/m/n/15.05624 直
+ []
+
+
+Underfull \hbox (badness 3713) in paragraph at lines 833--833
+[]|\TU/SimSun(1)/m/n/15.05624 只 能 验 证 状 态 机，|
+ []
+
+
+
+[89] [90] [91]
+Underfull \hbox (badness 10000) in paragraph at lines 861--861
+[]|\TU/SimSun(1)/m/n/15.05624 资 源 与
+ []
+
+
+Underfull \hbox (badness 5817) in paragraph at lines 861--861
+[]|\TU/SimSun(1)/m/n/15.05624 风 切 变、|  空 气
+ []
+
+
+Underfull \hbox (badness 2409) in paragraph at lines 861--861
+[]|\TU/SimSun(1)/m/n/15.05624 年 发 电 量、|  低 出
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 861--862
+[]|\TU/SimSun(1)/m/n/15.05624 海 测\TU/lmr/m/n/15.05624 /\TU/SimSun(1)/m/n/15.056
+24 测 风、|
+ []
+
+
+Underfull \hbox (badness 1424) in paragraph at lines 861--862
+\TU/SimSun(1)/m/n/15.05624 再 分 析 校 准、|
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 862--862
+[]|\TU/SimSun(1)/m/n/15.05624 储 能 可
+ []
+
+
+Underfull \hbox (badness 4819) in paragraph at lines 862--862
+[]|\TU/lmr/m/n/15.05624 BESS \TU/SimSun(1)/m/n/15.05624 功 率\TU/lmr/m/n/15.05624
+ /\TU/SimSun(1)/m/n/15.05624 时
+ []
+
+
+Underfull \hbox (badness 1005) in paragraph at lines 862--862
+\TU/SimSun(1)/m/n/15.05624 效 率、|  可 用 率、|
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 862--863
+[]|\TU/lmr/m/n/15.05624 PCS/OEM\TU/SimSun(1)/m/n/15.05624 、|
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 863--863
+[]|\TU/SimSun(1)/m/n/15.05624 氢 路 径
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 863--863
+\TU/SimSun(1)/m/n/15.05624 启 用 阈
+ []
+
+
+Underfull \hbox (badness 5817) in paragraph at lines 863--863
+[]|\TU/SimSun(1)/m/n/15.05624 氢 价、|  最 低 承
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 863--864
+[]|\TU/SimSun(1)/m/n/15.05624 承 购 合 同、|
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 863--864
+\TU/lmr/m/n/15.05624 OEM\TU/SimSun(1)/m/n/15.05624 、|  储 运
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 864--864
+[]|\TU/SimSun(1)/m/n/15.05624 算 力 服
+ []
+
+
+Underfull \hbox (badness 5817) in paragraph at lines 864--864
+\TU/SimSun(1)/m/n/15.05624 比 例、|  延 期 窗
+ []
+
+
+Underfull \hbox (badness 2409) in paragraph at lines 864--864
+[]|\TU/SimSun(1)/m/n/15.05624 任 务 完 成 率、|  逾
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 864--864
+\TU/SimSun(1)/m/n/15.05624 期、|  服 务 收 入、|
+ []
+
+
+Underfull \hbox (badness 1424) in paragraph at lines 864--865
+[]|\TU/SimSun(1)/m/n/15.05624 算 力 运 营 商、|
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 865--865
+[]|\TU/SimSun(1)/m/n/15.05624 电 力 外
+ []
+
+
+Underfull \hbox (badness 5817) in paragraph at lines 865--865
+[]|\TU/SimSun(1)/m/n/15.05624 海 缆 容 量、|  距
+ []
+
+
+Underfull \hbox (badness 1005) in paragraph at lines 865--865
+\TU/SimSun(1)/m/n/15.05624 离、|  损 耗 曲 线、|
+ []
+
+
+Underfull \hbox (badness 2980) in paragraph at lines 865--865
+\TU/SimSun(1)/m/n/15.05624 受 端 限 额 和 价
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 866--866
+[]|\TU/SimSun(1)/m/n/15.05624 控 制 算
+ []
+
+
+Underfull \hbox (badness 2409) in paragraph at lines 866--866
+[]|\TU/SimSun(1)/m/n/15.05624 算 法 净 增 益、|  抖
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 867--867
+[]|\TU/SimSun(1)/m/n/15.05624 极 端 事
+ []
+
+
+Underfull \hbox (badness 5817) in paragraph at lines 867--867
+\TU/SimSun(1)/m/n/15.05624 时 长、|  共 因 停
+ []
+
+
+Underfull \hbox (badness 1005) in paragraph at lines 867--867
+\TU/SimSun(1)/m/n/15.05624 机、|  通 信 中 断、|
+ []
+
+
+Underfull \hbox (badness 1394) in paragraph at lines 867--867
+[]|\TU/SimSun(1)/m/n/15.05624 生 存 性 假 设 下 的
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 867--868
+[]|\TU/SimSun(1)/m/n/15.05624 气 象 海 洋、|
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 867--868
+\TU/lmr/m/n/15.05624 OEM/EPC\TU/SimSun(1)/m/n/15.05624 、|
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 868--868
+[]|\TU/SimSun(1)/m/n/15.05624 经 济 财
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 868--868
+[]|\TU/lmr/m/n/15.05624 CAPEX\TU/SimSun(1)/m/n/15.05624 、|  固 定
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 868--868
+\TU/lmr/m/n/15.05624 O&M\TU/SimSun(1)/m/n/15.05624 、|  替 换、|
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 868--868
+[]|\TU/lmr/m/n/15.05624 NPV\TU/SimSun(1)/m/n/15.05624 、| \TU/lmr/m/n/15.05624 F
+IRR\TU/SimSun(1)/m/n/15.05624 、|
+ []
+
+
+Underfull \hbox (badness 5817) in paragraph at lines 869--869
+[]|\TU/SimSun(1)/m/n/15.05624 建 设、|  设 备 更
+ []
+
+
+Underfull \hbox (badness 1424) in paragraph at lines 869--870
+\TU/SimSun(1)/m/n/15.05624 行 业 数 据 库、|
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 870--870
+[]|\TU/SimSun(1)/m/n/15.05624 动 态 构
+ []
+
+
+Underfull \hbox (badness 1527) in paragraph at lines 870--870
+[]|\TU/SimSun(1)/m/n/15.05624 惯 量\TU/lmr/m/n/15.05624 /\TU/SimSun(1)/m/n/15.056
+24 下 垂、| \TU/lmr/m/n/15.05624 P–
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 870--871
+[]|\TU/lmr/m/n/15.05624 REGFM\TU/SimSun(1)/m/n/15.05624 、|
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 870--871
+\TU/lmr/m/n/15.05624 EMT\TU/SimSun(1)/m/n/15.05624 、| \TU/lmr/m/n/15.05624 HIL\
+TU/SimSun(1)/m/n/15.05624 、|
+ []
+
+[92] [93]
+
+[94]) (./chapters/chapter6.tex
+
+[95]
 第六章
 
 Underfull \hbox (badness 1057) in paragraph at lines 28--28
@@ -2023,51 +2627,51 @@ Underfull \hbox (badness 1057) in paragraph at lines 28--28
 
 
 
-[67
+[96
 
 ]
 Underfull \hbox (badness 4391) in paragraph at lines 58--58
-[]|\TU/SimSun(0)/m/n/10.95 电 力 交 易\TU/lmr/m/n/10.95 /\TU/SimSun(0)/m/n/10.95 长 
+[]|\TU/SimSun(1)/b/n/10.95 电 力 交 易\TU/lmr/m/n/10.95 /\TU/SimSun(1)/b/n/10.95 长 
 期
  []
 
 
 
-[68]
+[97]
 Underfull \hbox (badness 10000) in paragraph at lines 122--122
-[]|\TU/SimSun(0)/m/n/10.95 交 付 点
+[]|\TU/SimSun(1)/b/n/10.95 交 付 点
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 122--122
-[]|\TU/SimSun(0)/m/n/10.95 合 格 产 品
+[]|\TU/SimSun(1)/b/n/10.95 合 格 产 品
  []
 
 
 Underfull \hbox (badness 3471) in paragraph at lines 122--122
-[]|\TU/SimSun(0)/m/n/10.95 合 同 计 费 单
+[]|\TU/SimSun(1)/b/n/10.95 合 同 计 费 单
  []
 
 
 Underfull \hbox (badness 4647) in paragraph at lines 122--122
-[]|\TU/SimSun(0)/m/n/10.95 有 效 服 务 量、|  利 用 率 和
+[]|\TU/SimSun(1)/b/n/10.95 有 效 服 务 量、|  利 用 率 和
  []
 
 
 Underfull \hbox (badness 6316) in paragraph at lines 122--122
-[]|\TU/lmr/m/n/10.95 MWh \TU/SimSun(0)/m/n/10.95 或 服
+[]|\TU/lmr/m/n/10.95 MWh \TU/SimSun(1)/b/n/10.95 或 服
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 122--122
-[]|\TU/SimSun(0)/m/n/10.95 绿 证 或
+[]|\TU/SimSun(1)/b/n/10.95 绿 证 或
  []
 
 
 
-[69]
+[98]
 
-[70]
+[99]
 Underfull \hbox (badness 2418) in paragraph at lines 169--169
 []|\TU/SimSun(1)/b/n/10 弱 网\TU/lmr/m/n/10 /\TU/SimSun(1)/b/n/10 离 网 及 故 障 工 况
  []
@@ -2079,9 +2683,9 @@ Underfull \hbox (badness 3250) in paragraph at lines 169--169
 
 
 
-[71]
+[100]
 
-[72]
+[101]
 Underfull \hbox (badness 4805) in paragraph at lines 240--240
 []|\TU/SimSun(0)/m/n/12 最 小 验 证 系
  []
@@ -2093,36 +2697,36 @@ Underfull \hbox (badness 4805) in paragraph at lines 240--240
 
 
 Underfull \hbox (badness 1292) in paragraph at lines 267--267
-[]|\TU/SimSun(0)/m/n/10.95 储 能\TU/lmr/m/n/10.95 /\TU/SimSun(0)/m/n/10.95 电 力 电 
+[]|\TU/SimSun(1)/b/n/10.95 储 能\TU/lmr/m/n/10.95 /\TU/SimSun(1)/b/n/10.95 电 力 电 
 子
  []
 
 
 Underfull \hbox (badness 1292) in paragraph at lines 267--267
-[]|\TU/SimSun(0)/m/n/10.95 高 校 院 所\TU/lmr/m/n/10.95 /\TU/SimSun(0)/m/n/10.95 认 
+[]|\TU/SimSun(1)/b/n/10.95 高 校 院 所\TU/lmr/m/n/10.95 /\TU/SimSun(1)/b/n/10.95 认 
 证
  []
 
 
 
-[73]
+[102]
 Underfull \hbox (badness 2293) in paragraph at lines 292--292
 []|\TU/lmr/m/n/12 A \TU/SimSun(0)/m/n/12 主 链 路 最
  []
 
 
 
-[74]
+[103]
 
-[75]
+[104]
 
-[76]) (./chapters/chapter7.tex
+[105]) (./chapters/chapter7.tex
 
-[77]
+[106]
 第七章
 ) (./references.tex
 
-[78
+[107
 
 ]
 Underfull \hbox (badness 3758) in paragraph at lines 4--7
@@ -2230,7 +2834,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 40--43
 
 
 
-[79
+[108
 
 ]
 Underfull \hbox (badness 1067) in paragraph at lines 45--48
@@ -2292,7 +2896,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 72--76
 
 
 
-[80]
+[109]
 Underfull \hbox (badness 1005) in paragraph at lines 111--113
 []\TU/lmr/m/n/15.05624 IEC. IEC 61400-3-2:2025, Wind energy generation systems—
 
@@ -2306,7 +2910,7 @@ ngSong(0)/m/n/15.05624 国 家 标 准 化 管 理 委 员 会\TU/lmr/m/n/15.056
 
 
 
-[81]
+[110]
 Underfull \hbox (badness 1205) in paragraph at lines 126--128
 []\TU/FangSong(0)/m/n/15.05624 国 家 市 场 监 督 管 理 总 局\TU/lmr/m/n/15.05624 , \TU/Fa
 ngSong(0)/m/n/15.05624 国 家 标 准 化 管 理 委 员 会\TU/lmr/m/n/15.05624 . GB/T
@@ -2319,7 +2923,7 @@ Underfull \hbox (badness 2809) in paragraph at lines 139--142
 
 
 
-[82]
+[111]
 Underfull \hbox (badness 10000) in paragraph at lines 197--199
 []\TU/lmr/m/n/15.05624 IEC. IEC 60300-3-3:2017, Dependability management—
  []
@@ -2332,9 +2936,17 @@ Underfull \hbox (badness 3128) in paragraph at lines 197--199
 
 
 
-[83])
+[112]
+Underfull \hbox (badness 1609) in paragraph at lines 224--228
+\TU/lmr/m/n/15.05624 rithm in the presence of unknown correlations. \TU/lmr/m/i
+t/15.05624 Proceedings
+ []
 
-[84] (./main.aux)
+
+
+[113])
+
+[114] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/07/14>
@@ -2345,12 +2957,12 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 36397 strings out of 473832
- 867948 string characters out of 5723061
- 1187536 words of memory out of 5000000
- 58789 multiletter control sequences out of 15000+600000
- 590568 words of font info for 221 fonts, out of 8000000 for 9000
+ 36607 strings out of 473832
+ 877166 string characters out of 5723061
+ 1183995 words of memory out of 5000000
+ 58987 multiletter control sequences out of 15000+600000
+ 590592 words of font info for 224 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  93i,12n,111p,1209b,1267s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (92 pages).
+Output written on main.xdv (123 pages, 1562564 bytes).
