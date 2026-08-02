@@ -1,0 +1,118 @@
+\section{多形态产品外输与交付模型}
+\label{sec:product-delivery}
+
+本节统一定义电力、氢能、算力和海洋服务的最终交付点。交付变量只记录越过合同或服务
+边界的实际量，不能用设备输入功率替代：电力按陆上受端、氢按扣除通道损失后的接收量、
+算力按满足光纤与SLA的有效任务、海洋用能按实际供能量计量。价格与收入在4.8分账。
+四条交付路径及各自结算测点见图~\ref{fig:delivery-model}。
+
+\begin{figure}[H]
+\centering
+\resizebox{0.94\textwidth}{!}{\input{figures/chapter4/fig4-3_delivery_model}}
+\caption{多形态产品外输与交付子模型结构}
+\label{fig:delivery-model}
+\sourcetype{项目内部子模型结构图。}
+\end{figure}
+
+\subsection{电力海缆送出}
+
+海上母线进入海缆的送端功率为$P_t^{cab,s}$，陆侧受端功率为$P_t^{cab,r}$，损耗为
+$P_t^{cab,loss}$。逐时满足
+\begin{equation}
+0\le P_t^{cab,s}\le C^{cab}A_t^{cab},
+\qquad 0\le P_t^{cab,r}\le L_t^{grid},
+\label{eq:cable-send}
+\end{equation}
+\begin{equation}
+P_t^{cab,r}=P_t^{cab,s}-P_t^{cab,loss},
+\qquad P_t^{cab,loss}\ge 0,
+\label{eq:cable-receive}
+\end{equation}
+其中$C^{cab}$为海缆及配套站设备容量，$A_t^{cab}$为逐时可用率，$L_t^{grid}$为陆侧
+接纳能力。检修、故障和阻塞均通过可用率或接纳上界进入模型，不得在结果阶段再次扣减。
+
+规划级损耗可写为固定、比例和电流平方代理的组合：
+\begin{equation}
+P_t^{cab,loss}=p_0^{cab}y_t^{cab}
++\alpha^{cab}P_t^{cab,s}
++\beta^{cab}\left(P_t^{cab,s}\right)^2.
+\label{eq:cable-loss}
+\end{equation}
+式~\eqref{eq:cable-loss}仅为可校准代理结构，固定站耗、换流损耗和线路电阻项应依据具体
+交流/直流拓扑、长度、电压、导体参数和设备曲线确定；不得由“离岸距离”单变量跨项目
+外推\cite{nrel-transmission}。未取得工程设计或厂家数据时，$p_0^{cab}$、
+$\alpha^{cab}$、$\beta^{cab}$均为\assumptiontag，代理适用性为\verifytag。
+\sourcetype{国家实验室官方技术报告；具体参数待设计院、海缆及换流设备企业校准。}
+
+若运行MILP需要线性化，给定节点$(\bar P_k,\ell_k)$并采用SOS2权重：
+\begin{equation}
+P_t^{cab,s}=\sum_{k\in\mathcal K}\lambda_{t,k}\bar P_k,
+\quad
+\widehat P_t^{cab,loss}=\sum_{k\in\mathcal K}\lambda_{t,k}\ell_k,
+\quad
+\sum_{k\in\mathcal K}\lambda_{t,k}=1,
+\quad \lambda_{t,k}\ge0.
+\label{eq:cable-loss-pwl}
+\end{equation}
+求解后必须以原损耗函数复算受端电量；若越界则加密分段或收紧可行域后重求。
+
+\subsection{氢能管输与船运交付}
+
+制氢模块向储氢库存提交合格氢。时段$t$从库存提取的管输量$m_t^{pipe}$和船运装载量
+$m_t^{ship}$须满足各自可用率、流量/装载及作业窗口：
+\begin{equation}
+0\le m_t^{pipe}\le \bar m_t^{pipe}A_t^{pipe},
+\qquad
+0\le m_t^{ship}\le \bar m_t^{ship}A_t^{ship}z_t^{window}.
+\label{eq:h2-channel-capacity}
+\end{equation}
+最终交付量定义为
+\begin{equation}
+m_t^{H2,del}
+=\eta_t^{pipe}m_t^{pipe}+\eta_t^{ship}m_t^{ship},
+\qquad 0\le\eta_t^{pipe},\eta_t^{ship}\le1.
+\label{eq:h2-delivery}
+\end{equation}
+式~\eqref{eq:h2-delivery}是项目质量守恒与结算定义；损耗、装卸、质量不合格和放散不得
+隐藏在收入系数中。管输/船运容量、损失率、天气窗口和产品标准均为\assumptiontag，
+须由储运企业、港航单位、承购方和安全审查校准。
+
+绿氨只作为架构预留，不在现行模型确认产量或收入。若后续启用，应另建氮气制备、合成氨、
+储存、装卸和物料/能量平衡，不得用氢气质量乘常数直接替代完整工艺。相关公式
+\verifytag。
+
+\subsection{算力服务交付}
+
+算力模块在4.6按任务队列、IT功率、动态PUE和光纤能力计算有效服务率$S_t$。本节将
+$S_t$定义为算力合同的物理交付量；未经完成、超过时限或通信不可用的任务不计入交付。
+合同可计费量由
+\begin{equation}
+W^{C,del}=\sum_{t\in\mathcal T} S_t\Delta t_t-W^{SLA,fail},
+\qquad W^{SLA,fail}\ge0
+\label{eq:compute-delivery}
+\end{equation}
+记录。$W^{SLA,fail}$表示虽消耗IT资源但未满足合同条件的工作量，不能同时计费。若客户
+采用GPU时、令牌、任务数等单位，应由合同给出与MWh-IT等效服务量之间的映射；未签认前
+为\assumptiontag。
+
+\subsection{海洋综合用能交付}
+
+令$P_t^{mar,dem}$为淡化、养殖、观测或海上装备等场景的需求功率，$P_t^{ENS,mar}$为
+未供功率，则实际服务功率为
+\begin{equation}
+P_t^{mar}=P_t^{mar,dem}-P_t^{ENS,mar},
+\quad
+0\le P_t^{ENS,mar}\le P_t^{mar,dem},
+\quad
+W^{mar,del}=\sum_t P_t^{mar}\Delta t_t.
+\label{eq:marine-service}
+\end{equation}
+式~\eqref{eq:marine-service}是项目服务核算定义。只有具备独立负荷曲线、计量点和服务
+合同的用途才进入收入；无法计量的空间复用、生态或战略价值只能定性报告，不进入基准
+现金流。
+
+\subsection{交付审计}
+
+第5章应分别报告海缆送端/受端电量及损耗、氢提取/接收量及通道损失、算力完成/违约
+工作量、海洋需求/实际服务/未供量。所有交付量使用与公共母线相同的时间戳和单位版本，
+禁止把设备额定容量、输入功率或库存变化冒充最终产品交付。

@@ -1,0 +1,268 @@
+\section{绿色算力服务}
+\label{sec:compute}
+
+\subsection{模型边界与接口}
+
+绿色算力模块描述“任务到达--任务调度--IT 功率--冷却及辅助功率--数据中心
+设施功率--算力收入”的逐时映射。模块不建立风电、储能、制氢和海缆的内部方程，
+只接收外部能源系统给出的时段可用功率上限 $\overline P_t^{\mathrm{DC}}$ 与结算电价
+$\pi_t^{\mathrm{elec}}$，并向统一调度返回实际设施功率 $P_t^{\mathrm{DC}}$、各类任务
+完成量、队列、SLA 后果及算力收益。
+
+为与全章统一，正文采用 MW-IT 表示算力服务率、MWh-IT 表示算力工作量。当前
+程序字段中的 MWh-CS 属于接口命名，数值上按同一等效算力工作量解释；在映射到
+具体 GPU 型号、Token 吞吐或训练作业前，不将其解释为特定业务性能。
+
+图~\ref{fig:compute-model}展示任务流、服务流与设施用电之间的双向耦合：功率约束改变
+任务接纳与队列状态，任务完成量和动态PUE又共同决定设施实际用电和最终可交付服务。
+\begin{figure}[H]
+\centering
+\resizebox{0.94\textwidth}{!}{\input{figures/chapter4/fig4-6_compute_model}}
+\caption{绿色算力子模型的任务--功率--服务结构}
+\label{fig:compute-model}
+\sourcetype{项目内部子模型结构图。}
+\end{figure}
+
+\subsection{任务分类与基本变量}
+
+根据履约属性，任务划分为刚性合同任务、柔性合同任务和可选弹性任务。刚性任务
+要求到达后立即服务；柔性任务允许在给定窗口内延期；可选任务只在剩余功率和算力
+容量允许时承接，未执行部分不产生违约。任务是否可抢占是另一维属性：大规模同步
+训练可建模为“柔性但不可抢占”的连续块任务，而不是与刚性、柔性并列的新类别。
+当前可执行聚合模型只显式处理可分割的刚性、柔性和可选任务；连续块任务留作作业
+级 MILP 扩展。
+
+设 $A_t^r$、$A_t^f$ 和 $D_t^s$ 分别为刚性到达率、柔性到达率和可选任务池，
+单位均为 MW-IT；$X_t^r$、$X_t^f$ 和 $X_t^s$ 为时段内完成的工作量，单位为
+MWh-IT；$U_t^r$ 为刚性未服务量，$Q_t$ 为时段末柔性队列。
+
+\subsection{刚性任务与柔性队列}
+
+刚性任务平衡为
+\begin{equation}
+X_t^r+U_t^r=A_t^r\Delta t,
+\qquad X_t^r\ge0,\quad U_t^r\ge0.
+\label{eq:dc-rigid}
+\end{equation}
+该式允许在极端供电不足时显式产生刚性未服务量，而不是令整个联合模型直接退出；
+$U_t^r$ 通过高额 SLA 惩罚促使系统优先调用可用能源。
+
+柔性任务队列递推为
+\begin{equation}
+Q_{t+1}=Q_t+A_t^f\Delta t-X_t^f,
+\qquad Q_t\ge0.
+\label{eq:dc-queue}
+\end{equation}
+设最大允许延期为 $L$ 个时段。为避免供电压力场景因硬截止期而不可行，引入逾期量
+$H_t^{\mathrm{late}}$：
+\begin{equation}
+H_t^{\mathrm{late}}
+\ge
+\sum_{\tau=1}^{t-L}A_\tau^f\Delta t
+-\sum_{\tau=1}^{t}X_\tau^f,
+\qquad
+H_t^{\mathrm{late}}\ge0,
+\quad t\ge L.
+\label{eq:dc-overdue}
+\end{equation}
+式~\eqref{eq:dc-overdue} 表示截至时段 $t$ 仍未完成、且已经超过延期窗口的工作量。
+对于仅有 168 h 数据的有限时域，期末剩余队列不强制清零，而定义
+\begin{equation}
+U^{\mathrm{term}}=Q_{T+1},
+\label{eq:dc-terminal}
+\end{equation}
+并计入期末未完成惩罚。这样既保留模型可行性，也不会把仿真边界之外的任务静默删除。
+
+\subsection{可选任务、容量与光纤约束}
+
+可选弹性任务满足
+\begin{equation}
+0\le X_t^s\le D_t^s\Delta t,
+\qquad
+D_t^{\mathrm{drop}}=D_t^s\Delta t-X_t^s.
+\label{eq:dc-spot}
+\end{equation}
+其中 $D_t^{\mathrm{drop}}$ 仅作为未承接量记录，不产生 SLA 惩罚。
+
+定义时段总服务率
+\begin{equation}
+S_t=\frac{X_t^r+X_t^f+X_t^s}{\Delta t}.
+\label{eq:dc-service-rate}
+\end{equation}
+本地 IT 服务容量与海底光纤可用率共同限制服务量：
+\begin{equation}
+0\le S_t\le C^{\mathrm{IT}},
+\qquad
+S_t\le A_t^{\mathrm{fiber}}C^{\mathrm{fiber}}.
+\label{eq:dc-capacity-fiber}
+\end{equation}
+$C^{\mathrm{fiber}}$ 在本模型中是以 MW-IT 等效表示的服务出口能力，不等同于
+Gbps 或 Tbps。后续只有在任务输入输出数据量、压缩率和时延要求已知时，才可将其
+替换为真实通信带宽约束。
+
+\subsection{IT 负载--功率模型}
+
+算力工作量不直接等于电表能耗。定义服务负载率
+\begin{equation}
+u_t=\frac{S_t}{C^{\mathrm{IT}}},
+\qquad 0\le u_t\le1.
+\end{equation}
+考虑服务器、存储、网络和控制系统的空载功耗，IT 功率采用可替换的系统级模型
+\begin{equation}
+P_t^{\mathrm{IT}}
+=C^{\mathrm{IT}}
+\left[r^{\mathrm{idle}}+
+\left(1-r^{\mathrm{idle}}\right)u_t^{\gamma}\right].
+\label{eq:dc-it-power}
+\end{equation}
+基准模型取 $r^{\mathrm{idle}}=0.30$、$\gamma=1$。因此设施在线但无任务时，IT
+系统仍消耗 $0.30C^{\mathrm{IT}}$；满载时 $P_t^{\mathrm{IT}}=C^{\mathrm{IT}}$。
+当前 DC-only 场景假设设施在整个仿真期保持在线，因而基础设施功率属于硬供电边界；
+若外部可用功率低于基础功率，应报告基础供电不可行。设施启停、最小开停机时间和
+重启能耗需在后续 MILP 中增加在线状态变量，不在本式中虚构补电。
+
+\subsection{海温状态、冷却功率与动态 PUE}
+
+原始海水温度记为 $T_t^{\mathrm{sea}}$。为近似 CDM、泵、闭式二次水环路和换热器
+的热惯性，引入有效海温状态
+\begin{equation}
+\alpha=\exp\left(-\frac{\Delta t}{\tau^{\mathrm{th}}}\right),
+\qquad
+T_t^{\mathrm{eff}}
+=\alpha T_{t-1}^{\mathrm{eff}}+
+(1-\alpha)T_t^{\mathrm{sea}}.
+\label{eq:dc-effective-temp}
+\end{equation}
+冷却功率采用半机理代理
+\begin{equation}
+\widetilde P_t^{\mathrm{cool}}
+=P_0^{\mathrm{cool}}+k_1P_t^{\mathrm{IT}}
++k_2\left(P_t^{\mathrm{IT}}\right)^2
++k_TP_t^{\mathrm{IT}}
+\left(T_t^{\mathrm{eff}}-T^{\mathrm{ref}}\right),
+\label{eq:dc-cooling-raw}
+\end{equation}
+\begin{equation}
+P_t^{\mathrm{cool}}
+=\max\left\{P_{\min}^{\mathrm{cool}},
+\widetilde P_t^{\mathrm{cool}}\right\}.
+\label{eq:dc-cooling}
+\end{equation}
+数据中心设施总功率与动态 PUE 分别为
+\begin{equation}
+P_t^{\mathrm{DC}}
+=\frac{P_t^{\mathrm{IT}}+P_t^{\mathrm{cool}}+P^{\mathrm{aux}}}
+{\eta^{\mathrm{dist}}},
+\label{eq:dc-total-power}
+\end{equation}
+\begin{equation}
+PUE_t=\frac{P_t^{\mathrm{DC}}}{P_t^{\mathrm{IT}}}.
+\label{eq:dc-pue}
+\end{equation}
+PUE采用设施总能耗与IT设备能耗之比的行业定义\cite{green-grid-pue,doe-pue}。
+其中 $P^{\mathrm{aux}}$ 表示不随任务直接变化的网络、控制和其他辅助功率，
+$\eta^{\mathrm{dist}}$ 为供配电效率。系数 $k_1$ 通过“满载、参考海温
+$T^{\mathrm{ref}}$ 时达到设计 PUE”这一锚点反推，因而设计 PUE 只是校准工况，
+不是每小时固定输入。低负载时固定辅助功率被较小的 IT 功率分摊，PUE 可能升高；
+海温升高通常增加换热与泵送负担。
+
+式~\eqref{eq:dc-effective-temp}--\eqref{eq:dc-cooling}为项目内部半机理代理，在取得
+冷板/浸没液冷设备、泵和换热器实测曲线并核验专业文献前标记为\verifytag。
+当前场景参数已与其他子模型参数统一移至表~\ref{tab:module-parameters}。其中算力数值全部
+为\assumptiontag，只用于模型结构与场景计算，并非设备供应商保证值。
+
+\subsection{功率上限与线性化实现}
+
+数据中心实际设施功率必须满足外部能源接口和设施额定边界：
+\begin{equation}
+0\le P_t^{\mathrm{DC}}
+\le \min\left\{\overline P_t^{\mathrm{DC}},C^{\mathrm{DC}}\right\}.
+\label{eq:dc-power-cap}
+\end{equation}
+式~\eqref{eq:dc-it-power}--\eqref{eq:dc-cooling} 含幂函数、二次项和最大值。
+当前聚合 LP 在给定 $T_t^{\mathrm{eff}}$ 后，将服务率区间
+$[0,C^{\mathrm{IT}}]$ 划分为若干段，以增量变量 $y_{t,b}$ 表示：
+\begin{equation}
+S_t=\sum_{b=1}^{B}y_{t,b},
+\qquad 0\le y_{t,b}\le \beta_b-\beta_{b-1},
+\end{equation}
+\begin{equation}
+P_t^{\mathrm{DC}}
+=g_t(0)+\sum_{b=1}^{B}s_{t,b}y_{t,b},
+\qquad
+s_{t,b}=\frac{g_t(\beta_b)-g_t(\beta_{b-1})}
+{\beta_b-\beta_{b-1}},
+\label{eq:dc-piecewise}
+\end{equation}
+其中 $g_t(S)$ 为由式~\eqref{eq:dc-it-power}--\eqref{eq:dc-total-power} 得到的
+服务率--设施功率映射。该处理保留动态海温影响，同时避免在联合调度中引入非线性
+求解器。
+
+\subsection{算力结算、成本与 SLA}
+
+若算力价格直接按元/MWh-IT 给出，则算力收入为
+\begin{equation}
+R^{\mathrm{compute}}
+=\sum_{t\in\mathcal T}
+\left(\pi_t^rX_t^r+\pi_t^fX_t^f+\pi_t^sX_t^s\right).
+\label{eq:dc-revenue-mwhit}
+\end{equation}
+若合同采用元/GPU$\cdot$h 结算，等效 GPU 小时为
+\begin{equation}
+G_t^k=\frac{1000X_t^k}{p_{\mathrm{GPU}}^{\mathrm{eq}}},
+\qquad k\in\{r,f,s\},
+\label{eq:dc-gpuh}
+\end{equation}
+相应收入为 $R^{\mathrm{compute}}=\sum_{t,k}\pi_{t,k}^{\mathrm{GPUh}}G_t^k$。
+$p_{\mathrm{GPU}}^{\mathrm{eq}}$ 同时分摊 GPU、CPU、内存、网络与存储功耗，只是
+场景换算参数，必须通过实际硬件和合同重新校准。
+
+用电成本、变动运维和 SLA 成本分别为
+\begin{equation}
+C^{\mathrm{elec}}
+=\sum_t\pi_t^{\mathrm{elec}}P_t^{\mathrm{DC}}\Delta t,
+\end{equation}
+\begin{equation}
+C^{\mathrm{om}}
+=\sum_t\left(c_r^{\mathrm{om}}X_t^r+c_f^{\mathrm{om}}X_t^f
++c_s^{\mathrm{om}}X_t^s\right),
+\end{equation}
+\begin{equation}
+C^{\mathrm{SLA}}
+=c_r^{\mathrm{unserved}}\sum_tU_t^r
++c_f^{\mathrm{late}}\sum_tH_t^{\mathrm{late}}\Delta t
++c_f^{\mathrm{term}}U^{\mathrm{term}}.
+\label{eq:dc-sla-cost}
+\end{equation}
+其中应满足
+$c_r^{\mathrm{unserved}}\gg c_f^{\mathrm{late}}>c_f^{\mathrm{term}}>0$，
+从而反映“基础设备--刚性任务--柔性任务--可选任务”的服务优先级。
+
+当前主模型采用三级词典序，而不是仅依靠任意权重的单一目标：
+\begin{enumerate}[label=(\arabic*)]
+\item 最小化刚性任务未服务量 $\sum_tU_t^r$；
+\item 在第一阶段最优值不恶化的条件下，最小化柔性逾期量、队列和期末未完成量；
+\item 在前两阶段服务质量不恶化的条件下，最大化
+$R^{\mathrm{compute}}-C^{\mathrm{elec}}-C^{\mathrm{om}}-C^{\mathrm{SLA}}$，
+并利用剩余资源承接可选任务。
+\end{enumerate}
+嵌入全系统模型后，上述任务约束和 SLA 成本保持不变，电力机会成本由
+第~\ref{sec:objective} 节的统一目标进行分账。
+
+\subsection{模块输出与适用范围}
+
+绿色算力模块向联合模型输出：各类任务完成量、刚性未服务量、柔性队列与逾期量、
+期末未完成量、可选任务丢弃量、IT 功率、冷却功率、设施总功率、动态 PUE、算力
+收入、电费、变动运维和 SLA 惩罚。年度或周期平均 PUE 必须按能量比计算：
+\begin{equation}
+PUE_{\mathrm{period}}
+=\frac{\sum_tP_t^{\mathrm{DC}}\Delta t}
+{\sum_tP_t^{\mathrm{IT}}\Delta t},
+\label{eq:dc-period-pue}
+\end{equation}
+不得以逐时 PUE 的简单算术平均代替。
+
+当前模型能够回答“在给定任务、海温、设施容量和供电上限下，数据中心需要多少电、
+完成多少算力服务并形成多少运行期收入”。它尚未证明具体 GPU 集群的 Token 吞吐、
+作业级连续训练、端到端网络 SLA、设备启停可靠性或完整项目投资收益；这些内容需要
+作业级轨迹、服务器与冷却设备实测曲线、真实合同和全生命周期成本进一步校准。
