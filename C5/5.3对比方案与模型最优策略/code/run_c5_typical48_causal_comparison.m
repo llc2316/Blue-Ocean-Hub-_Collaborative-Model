@@ -69,6 +69,12 @@ summary.initialBessEnergyMWh=repmat(initialStateAudit.bessEnergyMWh, ...
     height(summary),1);
 summary.initialH2InventoryKg=repmat(initialStateAudit.h2InventoryKg, ...
     height(summary),1);
+summary.rankingEligible=summary.mainConclusionEligible & ...
+    summary.strictPass;
+summary.rankingExclusionReason=eligibility_reason( ...
+    summary.rankingEligible,summary.mainConclusionStatus);
+summary.comparisonEligible=summary.rankingEligible;
+summary.comparisonExclusionReason=summary.rankingExclusionReason;
 eventSummary=summarize_by_event(hourlyLedger);
 
 if ~isfolder(outputDir), mkdir(outputDir); end
@@ -142,4 +148,11 @@ for i=1:numel(strategies)
     end
 end
 eventSummary=vertcat(rows{:});
+end
+
+function reason=eligibility_reason(eligible,status)
+eligible=logical(eligible(:));
+status=string(status(:));
+reason=repmat("ELIGIBLE",numel(eligible),1);
+reason(~eligible)=status(~eligible);
 end

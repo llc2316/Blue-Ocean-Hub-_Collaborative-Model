@@ -277,6 +277,110 @@ problem.Constraints.cableSendLimit = ...
 problem.Constraints.gridAcceptLimit = ...
     v.pCableReceivedMW<=in.gridAcceptLimitMW.*in.availability.cable;
 
+% Causal surplus redispatch anchor. The primary hourly policy remains the
+% reference schedule; this optional pass may only absorb physical curtailment
+% while preserving critical service and previously committed actions.
+if isfield(in,'redispatch') && ~isempty(in.redispatch) && ...
+        isfield(in.redispatch,'enabled') && in.redispatch.enabled
+    r=in.redispatch;
+    if isfield(r,'pBessChargeMinMW')
+        problem.Constraints.redispatchBessChargeLower = ...
+            v.pBessChargeMW>=r.pBessChargeMinMW;
+    end
+    if isfield(r,'pBessChargeMaxMW')
+        problem.Constraints.redispatchBessChargeUpper = ...
+            v.pBessChargeMW<=r.pBessChargeMaxMW;
+    end
+    if isfield(r,'pBessDischargeMinMW')
+        problem.Constraints.redispatchBessDischargeLower = ...
+            v.pBessDischargeMW>=r.pBessDischargeMinMW;
+    end
+    if isfield(r,'pBessDischargeMaxMW')
+        problem.Constraints.redispatchBessDischargeUpper = ...
+            v.pBessDischargeMW<=r.pBessDischargeMaxMW;
+    end
+    if isfield(r,'pElectrolyzerMinMW')
+        problem.Constraints.redispatchElectrolyzerLower = ...
+            v.pElectrolyzerMW>=r.pElectrolyzerMinMW;
+    end
+    if isfield(r,'pElectrolyzerMaxMW')
+        problem.Constraints.redispatchElectrolyzerUpper = ...
+            v.pElectrolyzerMW<=r.pElectrolyzerMaxMW;
+    end
+    if isfield(r,'pH2PowerMinMW')
+        problem.Constraints.redispatchH2PowerLower = ...
+            v.pH2PowerMW>=r.pH2PowerMinMW;
+    end
+    if isfield(r,'pH2PowerMaxMW')
+        problem.Constraints.redispatchH2PowerUpper = ...
+            v.pH2PowerMW<=r.pH2PowerMaxMW;
+    end
+    if isfield(r,'pComputeBaseServedMinMW')
+        problem.Constraints.redispatchComputeBaseServedLower = ...
+            v.pComputeBaseServedMW>=r.pComputeBaseServedMinMW;
+    end
+    if isfield(r,'pComputeBaseServedMaxMW')
+        problem.Constraints.redispatchComputeBaseServedUpper = ...
+            v.pComputeBaseServedMW<=r.pComputeBaseServedMaxMW;
+    end
+    if isfield(r,'pComputeFlexibleMinMW')
+        problem.Constraints.redispatchComputeFlexibleLower = ...
+            v.pComputeFlexibleMW>=r.pComputeFlexibleMinMW;
+    end
+    if isfield(r,'pComputeFlexibleMaxMW')
+        problem.Constraints.redispatchComputeFlexibleUpper = ...
+            v.pComputeFlexibleMW<=r.pComputeFlexibleMaxMW;
+    end
+    if isfield(r,'pCableSendMinMW')
+        problem.Constraints.redispatchCableLower = ...
+            v.pCableSendMW>=r.pCableSendMinMW;
+    end
+    if isfield(r,'pCableSendMaxMW')
+        problem.Constraints.redispatchCableUpper = ...
+            v.pCableSendMW<=r.pCableSendMaxMW;
+    end
+    if isfield(r,'pMarineServedMinMW')
+        problem.Constraints.redispatchMarineServedLower = ...
+            v.pMarineServedMW>=r.pMarineServedMinMW;
+    end
+    if isfield(r,'pMarineServedMaxMW')
+        problem.Constraints.redispatchMarineServedUpper = ...
+            v.pMarineServedMW<=r.pMarineServedMaxMW;
+    end
+    if isfield(r,'pMarineUnservedMaxMW')
+        problem.Constraints.redispatchMarineUnservedUpper = ...
+            v.pMarineUnservedMW<=r.pMarineUnservedMaxMW;
+    end
+    if isfield(r,'pInternalUnservedMaxMW')
+        problem.Constraints.redispatchInternalUnservedUpper = ...
+            v.pInternalUnservedMW<=r.pInternalUnservedMaxMW;
+    end
+    if isfield(r,'pComputeBaseUnservedMaxMW')
+        problem.Constraints.redispatchComputeBaseUnservedUpper = ...
+            v.pComputeBaseUnservedMW<=r.pComputeBaseUnservedMaxMW;
+    end
+    if isfield(r,'h2PipeWithdrawnMinKg')
+        problem.Constraints.redispatchH2PipeLower = ...
+            v.h2PipeWithdrawnKg>=r.h2PipeWithdrawnMinKg;
+    end
+    if isfield(r,'h2PipeWithdrawnMaxKg')
+        problem.Constraints.redispatchH2PipeUpper = ...
+            v.h2PipeWithdrawnKg<=r.h2PipeWithdrawnMaxKg;
+    end
+    if isfield(r,'h2ShipWithdrawnMinKg')
+        problem.Constraints.redispatchH2ShipLower = ...
+            v.h2ShipWithdrawnKg>=r.h2ShipWithdrawnMinKg;
+    end
+    if isfield(r,'h2ShipWithdrawnMaxKg')
+        problem.Constraints.redispatchH2ShipUpper = ...
+            v.h2ShipWithdrawnKg<=r.h2ShipWithdrawnMaxKg;
+    end
+    if isfield(r,'pCurtailmentMaxMW')
+        problem.Constraints.redispatchCurtailmentUpper = ...
+            pCurtailmentMW<=r.pCurtailmentMaxMW;
+    end
+end
+
 % Optional strategy constraint: allocate the actually dispatched product
 % input energy among cable sending, electrolysis and compute. The shares
 % use a common MWh denominator; heterogeneous delivered products remain

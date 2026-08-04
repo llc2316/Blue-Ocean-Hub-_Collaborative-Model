@@ -1,0 +1,6 @@
+scenarioId,item,value,unit,dataStatus
+asset_switch_E,annualizedEmbodiedEmissionKgCO2e,0,kgCO2e,[模型仿真结果；排放因子含假设值]
+asset_switch_E,sourceEmissionKgCO2e,179063.70888327,kgCO2e,[模型仿真结果；排放因子含假设值]
+asset_switch_E,bessThroughputEmissionKgCO2e,145.559695290859,kgCO2e,[模型仿真结果；排放因子含假设值]
+asset_switch_E,gridImportEmissionKgCO2e,0,kgCO2e,[模型仿真结果；排放因子含假设值]
+asset_switch_E,hydrogenDeliveryEmissionKgCO2e,0,kgCO2e,[模型仿真结果；排放因子含假设值]

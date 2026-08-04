@@ -76,32 +76,18 @@ end
 end
 
 function [plan,state]=plan_hour(state,base,strategy,eventCode,t)
+windowH=double(field_or(strategy,'planningWindowH',1));
+windowH=max(1,min(numel(base.timeH)-t+1,round(windowH)));
+[planningWindowBySource,forecastWindowMean,forecastWindowVar, ...
+    profileWindowMean,riskQuantileWindow,riskLevelWindow]= ...
+    forecast_window(state,base,strategy,eventCode,t,windowH);
 event=eventCode(t);
-bucket=time_bucket(base,t);
-eventBucket=event_bucket(event);
-[profileMean,profileVar,hasProfile]= ...
-    lookup_profile(state,bucket,eventBucket);
-
-dynamicMean=state.posteriorMean;
-dynamicVar=state.posteriorVar+state.processNoiseVar;
-if hasProfile
-    [forecastMean,forecastVar]=covariance_intersection( ...
-        dynamicMean,dynamicVar,profileMean, ...
-        profileVar+state.processNoiseVar,state.dynamicCIWeight);
-else
-    profileMean=dynamicMean;
-    forecastMean=dynamicMean;
-    forecastVar=dynamicVar;
-end
-forecastMean=min(state.sourceCaps,max(0,forecastMean));
-forecastVar=max(1e-6,forecastVar);
-
-[q,z,riskLevel]=event_risk(event,strategy);
-planningBySource=forecastMean+z*sqrt(forecastVar);
-planningBySource=min(state.sourceCaps,max(0,planningBySource));
-if strcmpi(char(event),'TYPHOON_PASSAGE')
-    planningBySource(:)=0;
-end
+profileMean=profileWindowMean(1,:);
+forecastMean=forecastWindowMean(1,:);
+forecastVar=forecastWindowVar(1,:);
+planningBySource=planningWindowBySource(1,:);
+q=riskQuantileWindow(1);
+riskLevel=riskLevelWindow(1);
 
 state.lastForecastMean=forecastMean;
 state.lastForecastVar=forecastVar;
@@ -110,6 +96,8 @@ plan=struct( ...
     'priorBySourceMW',profileMean, ...
     'posteriorBySourceMW',forecastMean, ...
     'planningBySourceMW',planningBySource, ...
+    'planningWindowBySourceMW',planningWindowBySource, ...
+    'planningWindowAvailableMW',sum(planningWindowBySource,2), ...
     'priorAvailableMW',sum(profileMean), ...
     'posteriorAvailableMW',sum(forecastMean), ...
     'planningAvailableMW',sum(planningBySource), ...
@@ -118,6 +106,54 @@ plan=struct( ...
     'forecastSigmaMW',sum(sqrt(forecastVar)), ...
     'warmupObservationCount',state.warmupObservationCount, ...
     'definition',"ONLINE_KALMAN_PLUS_COVARIANCE_INTERSECTION");
+end
+
+function [planningBySource,forecastMean,forecastVar,profileMean, ...
+    riskQuantile,riskLevel]= ...
+    forecast_window(state,base,strategy,eventCode,t,windowH)
+S=numel(state.sourceNames);
+planningBySource=zeros(windowH,S);
+forecastMean=zeros(windowH,S);
+forecastVar=zeros(windowH,S);
+profileMean=zeros(windowH,S);
+riskQuantile=zeros(windowH,1);
+riskLevel=zeros(windowH,1);
+for j=1:windowH
+    tau=t+j-1;
+    event=eventCode(tau);
+    bucket=time_bucket(base,tau);
+    eventBucket=event_bucket(event);
+    [thisProfileMean,thisProfileVar,hasProfile]= ...
+        lookup_profile(state,bucket,eventBucket);
+    dynamicMean=state.posteriorMean;
+    dynamicVar=state.posteriorVar+j*state.processNoiseVar;
+    if hasProfile
+        [thisForecastMean,thisForecastVar]=covariance_intersection( ...
+            dynamicMean,dynamicVar,thisProfileMean, ...
+            thisProfileVar+j*state.processNoiseVar, ...
+            state.dynamicCIWeight);
+    else
+        thisProfileMean=dynamicMean;
+        thisForecastMean=dynamicMean;
+        thisForecastVar=dynamicVar;
+    end
+    thisForecastMean=min(state.sourceCaps,max(0,thisForecastMean));
+    thisForecastVar=max(1e-6,thisForecastVar);
+
+    [q,z,level]=event_risk(event,strategy);
+    thisPlanning=thisForecastMean+z*sqrt(thisForecastVar);
+    thisPlanning=min(state.sourceCaps,max(0,thisPlanning));
+    if strcmpi(char(event),'TYPHOON_PASSAGE')
+        thisPlanning(:)=0;
+    end
+
+    profileMean(j,:)=thisProfileMean;
+    forecastMean(j,:)=thisForecastMean;
+    forecastVar(j,:)=thisForecastVar;
+    planningBySource(j,:)=thisPlanning;
+    riskQuantile(j)=q;
+    riskLevel(j)=level;
+end
 end
 
 function state=update_hour(state,base,strategy,eventCode,t)

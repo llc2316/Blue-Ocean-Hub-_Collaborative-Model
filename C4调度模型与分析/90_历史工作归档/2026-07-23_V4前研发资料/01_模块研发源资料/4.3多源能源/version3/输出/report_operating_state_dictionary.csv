@@ -1,0 +1,8 @@
+Code,Key,Description
+0,NORMAL,正常运行
+1,RESOURCE_IDLE,资源不足/静水
+2,ENVIRONMENT_STOP,环境保护停机
+3,RESTART_WAIT,复归等待
+4,REORIENTATION,换向/调向
+5,UNAVAILABLE,故障或检修不可用
+6,DERATED,降额运行

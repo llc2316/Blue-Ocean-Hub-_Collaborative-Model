@@ -1,0 +1,10 @@
+parameter,value,unit,description,source_type
+it_capacity,7.08,MW,算力中心额定IT容量,阳江UDC参考
+cabinet_count,180,台,机柜总数,阳江UDC参考
+equivalent_gpu_it_power_kw,0.90,kW/GPU,一个可计费等效GPU连同CPU内存网络分摊后的IT功率,场景假设
+idle_power_ratio,0.30,p.u.,空载功率占额定容量比例,工程假设（敏感性0.25~0.35）
+distribution_efficiency,0.96,p.u.,380V直流供电效率,典型值
+power_curve_exponent,1.0,-,负载-功率曲线指数（1=线性）,工程假设
+heat_conversion_ratio,1.0,p.u.,电能转热能比例,工程假设
+minimum_load_ratio,0.10,p.u.,最低允许负载率,调度约束
+maximum_load_ratio,1.00,p.u.,最高允许负载率,模型边界

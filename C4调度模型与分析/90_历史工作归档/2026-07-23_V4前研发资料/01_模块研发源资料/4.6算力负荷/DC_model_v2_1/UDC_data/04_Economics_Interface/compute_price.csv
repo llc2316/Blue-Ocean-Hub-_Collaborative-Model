@@ -1,0 +1,5 @@
+task_type,price_yuan_per_gpu_h,source_type
+rigid_inference,8.0,market_reference_scenario
+flexible_batch,4.0,market_reference_scenario
+continuous_training,6.0,market_reference_scenario
+optional_job,2.5,market_reference_scenario

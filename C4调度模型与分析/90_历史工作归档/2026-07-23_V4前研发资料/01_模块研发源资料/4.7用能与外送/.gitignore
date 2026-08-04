@@ -1,0 +1,8 @@
+/.agent
+/temp
+/previous
+# Local cache and virtualenv artifacts
+/.uv-cache/
+**/__pycache__/
+**/.pycache/
+**/.venv/

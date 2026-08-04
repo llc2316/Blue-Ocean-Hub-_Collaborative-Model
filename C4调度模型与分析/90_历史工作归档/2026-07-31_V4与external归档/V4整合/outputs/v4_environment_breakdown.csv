@@ -1,0 +1,6 @@
+scenarioId,item,value,unit,dataStatus
+unified_24h_mixed,annualizedEmbodiedEmissionKgCO2e,0,kgCO2e,[模型仿真结果；排放因子含假设值]
+unified_24h_mixed,sourceEmissionKgCO2e,179063.70888327,kgCO2e,[模型仿真结果；排放因子含假设值]
+unified_24h_mixed,bessThroughputEmissionKgCO2e,145.559695290859,kgCO2e,[模型仿真结果；排放因子含假设值]
+unified_24h_mixed,gridImportEmissionKgCO2e,0,kgCO2e,[模型仿真结果；排放因子含假设值]
+unified_24h_mixed,hydrogenDeliveryEmissionKgCO2e,38355.6421624392,kgCO2e,[模型仿真结果；排放因子含假设值]

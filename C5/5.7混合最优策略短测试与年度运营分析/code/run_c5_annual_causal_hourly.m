@@ -69,6 +69,8 @@ summary.initialBessEnergyMWh=repmat(initialStateAudit.bessEnergyMWh, ...
     height(summary),1);
 summary.initialH2InventoryKg=repmat(initialStateAudit.h2InventoryKg, ...
     height(summary),1);
+summary.principalConclusionEligible=summary.mainConclusionEligible;
+summary.principalConclusionStatus=summary.mainConclusionStatus;
 baseForDemandAudit=v5_validate_and_normalize_input(cfg,base);
 demandAudit=summarize_demand_by_event(baseForDemandAudit,eventCode);
 totalCriticalDemandMWh=sum(demandAudit.totalCriticalDemandMWh);
@@ -77,6 +79,10 @@ summary.totalCriticalDemandMWh=repmat( ...
 summary.criticalServiceRate=1-summary.ensMWh/totalCriticalDemandMWh;
 eventSummary=summarize_by_event(hourlyLedger);
 eventSummary=attach_critical_service_rate(eventSummary,demandAudit);
+eventSummary.principalConclusionEligible=repmat( ...
+    summary.principalConclusionEligible,height(eventSummary),1);
+eventSummary.principalConclusionStatus=repmat( ...
+    summary.principalConclusionStatus,height(eventSummary),1);
 
 if ~isfolder(outputDir), mkdir(outputDir); end
 if comparisonSet=="ONLINE_PRIOR_POSTERIOR_ONLY"

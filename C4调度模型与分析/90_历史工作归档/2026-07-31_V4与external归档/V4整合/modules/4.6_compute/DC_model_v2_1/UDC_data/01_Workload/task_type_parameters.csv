@@ -1,0 +1,5 @@
+task_type,max_delay_h,preemptible,minimum_run_h,penalty_yuan_per_resource_h
+rigid_inference,0,0,0,100
+flexible_batch,12,1,0,30
+continuous_training,18,0,6,50
+optional_job,24,1,0,0
