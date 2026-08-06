@@ -1,0 +1,49 @@
+\begin{tikzpicture}[
+  font=\small,
+  >={Stealth[length=2.2mm]},
+  flow/.style={->,very thick,draw=gray!75},
+  biflow/.style={<->,very thick,draw=gray!75},
+  info/.style={->,thick,dashed,draw=blue!65},
+  source/.style={draw=green!55!black,fill=green!9,rounded corners=2pt,
+    minimum width=25mm,minimum height=10mm,align=center},
+  hub/.style={draw=blue!70!black,fill=blue!10,rounded corners=2pt,
+    minimum width=29mm,minimum height=18mm,align=center,font=\bfseries},
+  store/.style={draw=orange!80!black,fill=orange!13,rounded corners=2pt,
+    minimum width=31mm,minimum height=12mm,align=center},
+  value/.style={draw=violet!70!black,fill=violet!9,rounded corners=2pt,
+    minimum width=31mm,minimum height=12mm,align=center},
+  output/.style={draw=teal!70!black,fill=teal!9,rounded corners=2pt,
+    minimum width=29mm,minimum height=10mm,align=center},
+  brain/.style={draw=blue!70!black,fill=blue!6,rounded corners=5pt,
+    minimum width=70mm,minimum height=11mm,align=center,font=\bfseries}
+]
+\node[source] (wind) at (0,2.2) {漂浮式风电\\主力电源};
+\node[source] (pv) at (0,0.7) {漂浮式光伏\\互补电源};
+\node[source] (ocean) at (0,-0.8) {潮流/波浪能\\预留接口};
+\node[hub] (bus) at (4.0,0.7) {公共交流母线\\唯一功率总账};
+\node[store] (bess) at (7.5,2.2) {构网型电池\\短时支撑/能量搬移};
+\node[store] (h2) at (7.5,0.7) {电解制氢--储氢\\长时转移/价值升级};
+\node[value] (compute) at (7.5,-0.8) {海底绿色算力\\任务队列/PUE/SLA};
+\node[output] (electric) at (11.2,2.7) {电力外送\\陆上受端};
+\node[output] (hydrogen) at (11.2,1.35) {绿氢交付\\管输/船运};
+\node[output] (service) at (11.2,0) {算力服务\\通信交付点};
+\node[output] (marine) at (11.2,-1.35) {海洋综合用能\\设备入口};
+\node[brain] (brain) at (5.7,4.2) {智能协同调度大脑：边界发布—因果决策—状态滚动—价值评价};
+
+\draw[flow] (wind.east) -- (bus.west);
+\draw[flow] (pv.east) -- (bus.west);
+\draw[flow] (ocean.east) -- (bus.west);
+\draw[biflow] (bus.east) -- (bess.west);
+\draw[flow] (bus.east) -- (h2.west);
+\draw[flow] (bus.east) -- (compute.west);
+\draw[flow] (bus.east) to[out=10,in=180] (electric.west);
+\draw[flow] (h2.east) -- (hydrogen.west);
+\draw[flow] (compute.east) -- (service.west);
+\draw[flow] (bus.east) to[out=-20,in=180] (marine.west);
+
+\draw[info] (brain.south) -- (bus.north);
+\draw[info] (brain.south east) -- (bess.north);
+\draw[info] (brain.south east) -- (h2.north);
+\draw[info] (brain.south east) -- (compute.north);
+\draw[info] (brain.east) -- (electric.north);
+\end{tikzpicture}

@@ -1,0 +1,30 @@
+\begin{tikzpicture}[
+  font=\small,>={Stealth[length=2mm]},
+  box/.style={draw=green!55!black,fill=green!8,rounded corners=2pt,
+    minimum width=27mm,minimum height=10mm,align=center},
+  process/.style={draw=blue!60!black,fill=blue!7,rounded corners=2pt,
+    minimum width=31mm,minimum height=12mm,align=center},
+  output/.style={draw=teal!65!black,fill=teal!8,rounded corners=2pt,
+    minimum width=31mm,minimum height=13mm,align=center},
+  flow/.style={->,thick,draw=gray!80},
+  info/.style={->,thick,dashed,draw=blue!65}
+]
+\node[box] (met) at (0,2.2) {风速/波浪/姿态};
+\node[box] (solar) at (0,0.7) {辐照/海温/姿态};
+\node[box] (tidal) at (0,-0.8) {流速/潮向/海况};
+\node[process] (wind) at (3.5,2.2) {风机功率曲线\\与状态机};
+\node[process] (pv) at (3.5,0.7) {组件辐照--温度\\与逆变器边界};
+\node[process] (tc) at (3.5,-0.8) {涨/落潮曲线\\与换向状态};
+\node[process] (loss) at (7.1,0.7) {可用率、降额、辅机\\与集电损耗归属};
+\node[output] (poi) at (11,0.7) {公共汇集点\\可用/利用/弃电功率};
+\node[box] (dispatch) at (7.1,-1.45) {4.9调度请求};
+
+\draw[flow] (met) -- (wind);
+\draw[flow] (solar) -- (pv);
+\draw[flow] (tidal) -- (tc);
+\draw[flow] (wind) -- (loss);
+\draw[flow] (pv) -- (loss);
+\draw[flow] (tc) -- (loss);
+\draw[flow] (loss) -- (poi);
+\draw[info] (dispatch) -- (loss);
+\end{tikzpicture}
