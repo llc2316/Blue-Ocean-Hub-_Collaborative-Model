@@ -1,0 +1,48 @@
+\section{构网型电池储能模型}
+\label{sec:battery}
+
+电池储能承担小时尺度的能量搬移，并为构网运行预留一定功率和能量裕度。设$P_t^{\mathrm{ch}}$、$P_t^{\mathrm{dis}}$分别为母线侧充电和放电功率，$E_t^{\mathrm B}$为时段$t$结束时的可用能量，则
+\begin{equation}
+E_t^{\mathrm B}
+=\rho_{\mathrm B}E_{t-1}^{\mathrm B}
++\eta_{\mathrm{ch}}P_t^{\mathrm{ch}}\Delta t
+-\frac{P_t^{\mathrm{dis}}\Delta t}{\eta_{\mathrm{dis}}}.
+\label{eq:bess-state}
+\end{equation}
+式中$\rho_{\mathrm B}$为能量保持率，$\eta_{\mathrm{ch}}$和$\eta_{\mathrm{dis}}$分别为充、放电效率。充电时只有$\eta_{\mathrm{ch}}P_t^{\mathrm{ch}}\Delta t$进入电池；向母线输出$P_t^{\mathrm{dis}}\Delta t$时，电池内部需释放$P_t^{\mathrm{dis}}\Delta t/\eta_{\mathrm{dis}}$。
+
+SOC和功率边界写为
+\begin{equation}
+\begin{gathered}
+E^{\mathrm r}SOC_{\min}\le E_t^{\mathrm B}\le E^{\mathrm r}SOC_{\max},\\
+0\le P_t^{\mathrm{ch}}\le A_t^{\mathrm B}P^{\mathrm{ch,max}},\qquad
+0\le P_t^{\mathrm{dis}}\le A_t^{\mathrm B}P^{\mathrm{dis,max}}.
+\end{gathered}
+\label{eq:bess-soc}
+\end{equation}
+其中$E^{\mathrm r}$为额定能量，$A_t^{\mathrm B}$为设备可用系数。为避免同一时段同时充、放电，引入$u_t^{\mathrm{ch}},u_t^{\mathrm{dis}}\in\{0,1\}$：
+\begin{equation}
+P_t^{\mathrm{ch}}\le u_t^{\mathrm{ch}}P^{\mathrm{ch,max}},\quad
+P_t^{\mathrm{dis}}\le u_t^{\mathrm{dis}}P^{\mathrm{dis,max}},\quad
+u_t^{\mathrm{ch}}+u_t^{\mathrm{dis}}\le1.
+\label{eq:bess-exclusive}
+\end{equation}
+
+构网支撑需要在常规调度之外保留调节空间。令$g_t\in\{0,1\}$表示时段$t$是否承担构网支撑，$E^{\mathrm{GFM,up}}$和$E^{\mathrm{GFM,down}}$为向上、向下调节所需的能量裕度，则
+\begin{equation}
+E^{\mathrm r}SOC_{\min}+g_tE^{\mathrm{GFM,up}}
+\le E_t^{\mathrm B}
+\le E^{\mathrm r}SOC_{\max}-g_tE^{\mathrm{GFM,down}}.
+\label{eq:gfm-energy-reserve}
+\end{equation}
+对应的功率裕度为
+\begin{equation}
+\begin{aligned}
+(P_t^{\mathrm{dis}}-P_t^{\mathrm{ch}})+g_tP^{\mathrm{GFM,up}}
+&\le P^{\mathrm{dis,max}},\\
+(P_t^{\mathrm{ch}}-P_t^{\mathrm{dis}})+g_tP^{\mathrm{GFM,down}}
+&\le P^{\mathrm{ch,max}}.
+\end{aligned}
+\label{eq:gfm-up-reserve}
+\end{equation}
+$P^{\mathrm{GFM,up}}$和$P^{\mathrm{GFM,down}}$分别为预留的向上、向下有功调节能力。上述约束限定小时级调度工作点；频率、电压、故障穿越和黑启动等快速动态性能在相应工作点上另行校核。

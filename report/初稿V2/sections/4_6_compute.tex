@@ -1,0 +1,54 @@
+\section{绿色算力负荷模型}
+\label{sec:compute}
+
+数据中心负荷分为基础算力和弹性算力。基础算力对应需要优先保障的持续性服务，弹性算力对应可根据能源条件调整的工作负载。设$P_t^{\mathrm{comp,b,dem}}$为基础算力需求，$P_t^{\mathrm{comp,b}}$为实际供给功率，$P_t^{\mathrm{comp,b,ENS}}$为未满足部分，则
+\begin{equation}
+P_t^{\mathrm{comp,b}}+P_t^{\mathrm{comp,b,ENS}}
+=P_t^{\mathrm{comp,b,dem}},
+\qquad P_t^{\mathrm{comp,b,ENS}}\ge0.
+\label{eq:dc-rigid}
+\end{equation}
+因此$P_t^{\mathrm{comp,b,ENS}}$可直接计入可靠性指标。弹性算力只规定可调用范围：
+\begin{equation}
+0\le P_t^{\mathrm{comp,f}}\le P_t^{\mathrm{comp,f,max}}.
+\label{eq:dc-spot}
+\end{equation}
+未调用的弹性功率表示任务延期或未接入，不计入基础负荷未供能。
+
+设施入口侧总功率为
+\begin{equation}
+P_t^{\mathrm{comp}}
+=P_t^{\mathrm{comp,b}}+P_t^{\mathrm{comp,f}},
+\qquad
+P_t^{\mathrm{comp}}\le A_t^{\mathrm{comp}}P^{\mathrm{comp,max}}.
+\label{eq:dc-capacity-fiber}
+\end{equation}
+其中$P^{\mathrm{comp,max}}$为设施最大输入功率，$A_t^{\mathrm{comp}}$为服务器、配电、冷却和通信等环节综合形成的可用系数。
+
+PUE用于描述设施总能耗与IT设备能耗之间的关系。时段$t$完成的等效IT服务电量为
+\begin{equation}
+E_t^{\mathrm{CS}}
+=\frac{P_t^{\mathrm{comp}}\Delta t}{PUE_t},
+\qquad
+PUE_{\mathrm{period}}
+=\frac{\sum_tP_t^{\mathrm{comp}}\Delta t}
+{\sum_tE_t^{\mathrm{CS}}}.
+\label{eq:dc-it-energy}
+\end{equation}
+式中$E_t^{\mathrm{CS}}$单位为MWh-CS；$PUE_t$可由海温、负载率和冷却参数计算，也可作为具有相同计量边界的外生时序输入。
+
+获得作业级任务轨迹后，可进一步描述柔性任务延期。对于允许暂停和分割的柔性任务，设$A_t^{\mathrm{flex}}$为任务到达率，$X_t^{\mathrm{flex}}$为完成量，$Q_t$为时段末队列，则
+\begin{equation}
+Q_{t+1}=Q_t+A_t^{\mathrm{flex}}\Delta t-X_t^{\mathrm{flex}},
+\qquad Q_t\ge0.
+\label{eq:dc-queue}
+\end{equation}
+若最大允许延期为$L$小时，则截至$t$的累计完成量应覆盖$t-L$及以前到达的任务：
+\begin{equation}
+\sum_{\tau=1}^{t}X_\tau^{\mathrm{flex}}
+\ge
+\sum_{\tau=1}^{t-L}A_\tau^{\mathrm{flex}}\Delta t,
+\qquad t>L.
+\label{eq:dc-overdue}
+\end{equation}
+有限时域可设置$Q_T=0$或终端惩罚。启动后要求连续运行的不可抢占型柔性任务还需增加启动和连续运行约束。第五章联合仿真采用基础需求、弹性功率上限和逐时PUE组成的聚合算力接口。

@@ -1,0 +1,56 @@
+\section{电解制氢、储氢与氢转电模型}
+\label{sec:hydrogen}
+
+氢能子模型描述电能经电解槽转化为氢气、进入库存，再由管输、船运或氢转电支路输出的过程。设系统共有$N^{\mathrm{EL}}$个电解槽模块，$n_t^{\mathrm{EL}}$为时段$t$的在线模块数，$P_t^{\mathrm{EL}}$为总电解功率，则
+\begin{equation}
+n_t^{\mathrm{EL}}P^{\mathrm{mod,min}}
+\le P_t^{\mathrm{EL}}
+\le n_t^{\mathrm{EL}}P^{\mathrm{mod,max}},
+\qquad
+0\le n_t^{\mathrm{EL}}\le N^{\mathrm{EL}}A_t^{\mathrm{EL}}.
+\label{eq:ely-module}
+\end{equation}
+其中$P^{\mathrm{mod,min}}$、$P^{\mathrm{mod,max}}$为单模块稳定运行功率范围，$A_t^{\mathrm{EL}}$为设备可用系数。在线模块数变化和功率变化分别满足
+\begin{equation}
+n_t^{\mathrm{start}}\ge n_t^{\mathrm{EL}}-n_{t-1}^{\mathrm{EL}},\qquad
+-R^{\mathrm{EL,down}}\Delta t
+\le P_t^{\mathrm{EL}}-P_{t-1}^{\mathrm{EL}}
+\le R^{\mathrm{EL,up}}\Delta t .
+\label{eq:ely-ramp}
+\end{equation}
+式中$n_t^{\mathrm{start}}$为新增启动模块数，$R^{\mathrm{EL,up}}$和$R^{\mathrm{EL,down}}$为上下爬坡速率。
+
+采用系统比能耗$SEC$将交流侧电能换算为产氢量。$SEC$单位为kWh/kg，表示生产1~kg氢气所需电能，则
+\begin{equation}
+m_t^{\mathrm{prod}}
+=\frac{1000}{SEC}
+\left(P_t^{\mathrm{EL}}\Delta t-e^{\mathrm{start}}n_t^{\mathrm{start}}\right),
+\qquad m_t^{\mathrm{prod}}\ge0 .
+\label{eq:h2-production}
+\end{equation}
+其中$m_t^{\mathrm{prod}}$为产氢质量，$e^{\mathrm{start}}$为单模块启动能耗，系数1000用于MWh与kWh换算。若$SEC$已包含整流和常规辅助系统耗电，则相应电耗不再在母线侧重复计入。
+
+设$H_t$为时段末氢库存，$\rho_{\mathrm H}$为库存保持率，则
+\begin{equation}
+H_t=\rho_{\mathrm H}H_{t-1}
++m_t^{\mathrm{prod}}
+-m_t^{\mathrm{pipe}}
+-m_t^{\mathrm{ship}}
+-m_t^{\mathrm{H2P}},
+\qquad
+0\le H_t\le A_t^{\mathrm{tank}}H^{\max}.
+\label{eq:h2-inventory}
+\end{equation}
+本小时产氢增加库存，管输、船运和氢转电共同消耗库存；$H^{\max}$为最大储氢能力。
+
+启用氢转电支路时，向母线回发$P_t^{\mathrm{H2P}}$所需的氢气质量为
+\begin{equation}
+m_t^{\mathrm{H2P}}
+=\frac{1000P_t^{\mathrm{H2P}}\Delta t}
+{\eta^{\mathrm{H2P}}LHV_{\mathrm{H2}}},
+\qquad
+0\le P_t^{\mathrm{H2P}}
+\le A_t^{\mathrm{H2P}}P^{\mathrm{H2P,max}}u_t^{\mathrm{H2P}}.
+\label{eq:h2-to-power}
+\end{equation}
+其中$\eta^{\mathrm{H2P}}$为氢转电效率，$LHV_{\mathrm{H2}}$为氢气低位热值。模型对同一时段的电解制氢与氢转电设置运行互斥，使该支路主要承担跨时段能量转移和保供功能。

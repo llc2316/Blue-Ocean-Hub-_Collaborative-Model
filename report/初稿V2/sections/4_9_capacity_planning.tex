@@ -1,0 +1,31 @@
+\section{联合调度约束}
+\label{sec:constraints}
+
+检修、故障和极端海况会改变设备可参与调度的容量。对任一设备或通道$j$，记$x_{j,t}$为运行变量，$\bar x_{j,t}$为正常运行上限，$A_{j,t}^{\mathrm{evt}}\in[0,1]$为事件状态下的可用系数，则
+\begin{equation}
+0\le x_{j,t}\le A_{j,t}^{\mathrm{evt}}\bar x_{j,t},
+\qquad j\in\mathcal J^{\mathrm{asset}}.
+\label{eq:availability-general}
+\end{equation}
+$A_{j,t}^{\mathrm{evt}}=1$表示正常可用，介于0和1之间表示降额，取0表示相应设备或通道关闭。
+
+在线策略需要提前形成产品计划时，定义
+\begin{equation}
+p_{\mathrm E,t}=P_t^{\mathrm{cable,s}},\quad
+p_{\mathrm H,t}=P_t^{\mathrm{EL}},\quad
+p_{\mathrm C,t}=P_t^{\mathrm{comp,f}},\quad
+p_{\Sigma,t}=p_{\mathrm E,t}+p_{\mathrm H,t}+p_{\mathrm C,t},
+\label{eq:hourly-mix-def}
+\end{equation}
+其中$p_{\mathrm E,t}$、$p_{\mathrm H,t}$和$p_{\mathrm C,t}$分别为电力外送、制氢和弹性算力实际投入功率。若计划份额$q_{\mathrm E,t}+q_{\mathrm H,t}+q_{\mathrm C,t}=1$，允许偏差为$\delta$，则
+\begin{equation}
+\max(0,q_{i,t}-\delta)p_{\Sigma,t}
+\le p_{i,t}
+\le
+\min(1,q_{i,t}+\delta)p_{\Sigma,t},
+\quad i\in\{\mathrm E,\mathrm H,\mathrm C\}.
+\label{eq:hourly-mix}
+\end{equation}
+该约束使实际分配围绕计划份额在$\delta$范围内调整；$p_{\Sigma,t}=0$时三类可选产品均无投入。
+
+有限时域还需设置电池和氢库存的期末边界，采用最低期末状态或首尾闭合条件，避免在窗口末端集中释放库存。正常、预警、过境和恢复等事件状态通过$A_{j,t}^{\mathrm{evt}}$、储能备用目标和输出通道上限进入同一联合模型。

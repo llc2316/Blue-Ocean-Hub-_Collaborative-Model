@@ -1,0 +1,61 @@
+\section{目标函数与评价指标}
+\label{sec:objective}
+
+联合调度在满足设备约束和母线平衡的条件下，根据不同产品的运行成本和结算收益确定逐时功率分配。设$C_{\mathrm{OM}}$、$C_{\mathrm{start}}$、$C_{\mathrm{deg}}$、$C_{\mathrm{transport}}$和$C_{\mathrm{ENS}}$分别表示变动运维、启停、储能退化、氢气运输和未供能成本，$C_{\mathrm{terminal}}$为有限时域末状态的价值调整；$R_{\mathrm{elec}}$、$R_{\mathrm{H2}}$、$R_{\mathrm{compute}}$和$R_{\mathrm{marine}}$分别表示四类输出收益。运行经济目标为
+\begin{equation}
+\begin{aligned}
+F_{\mathrm{eco}}={}&
+C_{\mathrm{OM}}+C_{\mathrm{start}}+C_{\mathrm{deg}}
++C_{\mathrm{transport}}+C_{\mathrm{ENS}}+C_{\mathrm{terminal}}\\
+&-R_{\mathrm{elec}}-R_{\mathrm{H2}}
+-R_{\mathrm{compute}}-R_{\mathrm{marine}}.
+\end{aligned}
+\label{eq:economic-objective}
+\end{equation}
+优化时最小化$F_{\mathrm{eco}}$。电力、氢气和算力收益分别按照$P_t^{\mathrm{cable,r}}$、$m_t^{\mathrm{H2,del}}$和$E_t^{\mathrm{CS}}$的实际结算量计算。资本性支出、固定运维和融资成本归入生命周期经济评价。
+
+环境指标采用项目运行排放与基准系统避免排放之差：
+\begin{equation}
+F_{\mathrm{env}}
+=GHG_{\mathrm{project}}-GHG_{\mathrm{avoided,baseline}}.
+\label{eq:environment-objective}
+\end{equation}
+$F_{\mathrm{env}}$越小，表示在所选基准下的净排放水平越低。
+
+确定性时序的可靠性以未供能量表示：
+\begin{equation}
+ENS=\sum_{t\in\mathcal T}
+\left(
+P_t^{\mathrm{int,ENS}}
++P_t^{\mathrm{marine,ENS}}
++P_t^{\mathrm{comp,b,ENS}}
+\right)\Delta t.
+\label{eq:ens}
+\end{equation}
+式中三项分别对应内部关键负荷、海洋用能和基础算力的未供功率。若场景集合$\mathcal S$具有概率$\pi_s$，则
+\begin{equation}
+EENS=\sum_{s\in\mathcal S}\pi_sENS_s,
+\qquad
+\sum_{s\in\mathcal S}\pi_s=1.
+\label{eq:eens}
+\end{equation}
+
+经济、可靠性和环境指标量纲不同，模型采用$\varepsilon$约束法进行多目标集成：
+\begin{equation}
+\begin{aligned}
+\min\quad &F_{\mathrm{eco}}\\
+\mathrm{s.t.}\quad
+&ENS\le\varepsilon_{\mathrm{ENS}},\qquad
+F_{\mathrm{env}}\le\varepsilon_{\mathrm{GHG}},\\
+&\eta_{\mathrm{RE}}\ge\varepsilon_{\mathrm{RE}}.
+\end{aligned}
+\label{eq:epsilon-constraint}
+\end{equation}
+其中$\varepsilon_{\mathrm{ENS}}$、$\varepsilon_{\mathrm{GHG}}$和$\varepsilon_{\mathrm{RE}}$分别为可靠性、环境绩效和新能源利用率边界。可再生能源利用率定义为
+\begin{equation}
+\eta_{\mathrm{RE}}
+=\frac{\sum_tP_t^{\mathrm{src,use}}\Delta t}
+{\sum_tP_t^{\mathrm{src,av}}\Delta t}.
+\label{eq:renewable-utilization}
+\end{equation}
+分子为实际利用的可再生能源电量，分母为同期可用电量。改变各$\varepsilon$阈值可分析经济性、可靠性、环境绩效与新能源消纳之间的折中关系。

@@ -1,0 +1,47 @@
+\section{产品输出与结算约束}
+\label{sec:product-delivery}
+
+能源岛通过电力、氢气、算力服务和海洋用能等端口形成可计量输出。各端口分别按照受端电量、实际供应量或有效服务量核算，传输损耗在对应通道内计算。
+
+设$P_t^{\mathrm{cable,s}}$和$P_t^{\mathrm{cable,r}}$分别为海缆海上送端与陆上受端功率。送端受到海缆额定容量和设备可用状态限制：
+\begin{equation}
+0\le P_t^{\mathrm{cable,s}}
+\le A_t^{\mathrm{cable}}P^{\mathrm{cable,max}}.
+\label{eq:cable-send}
+\end{equation}
+式中$A_t^{\mathrm{cable}}$为逐时可用系数，$P^{\mathrm{cable,max}}$为送端额定功率。采用综合损耗率$\lambda^{\mathrm{cable}}$时，
+\begin{equation}
+P_t^{\mathrm{cable,r}}
+=(1-\lambda^{\mathrm{cable}})P_t^{\mathrm{cable,s}},
+\qquad
+0\le P_t^{\mathrm{cable,r}}\le P_t^{\mathrm{grid,max}}.
+\label{eq:cable-receive}
+\end{equation}
+其中$P_t^{\mathrm{grid,max}}$为陆侧时段$t$的最大接纳功率。因此，实际外送同时受海缆物理容量和陆侧接纳能力限制。规划级分析可进一步采用负载率相关损耗函数$P_t^{\mathrm{loss,cable}}=f_{\mathrm{loss}}(P_t^{\mathrm{cable,s}})$并作分段线性化；第五章基准计算采用统一综合损耗率。
+
+氢气由储氢系统进入管输或船运通道：
+\begin{equation}
+\begin{gathered}
+0\le m_t^{\mathrm{pipe}}\le A_t^{\mathrm{pipe}}\bar m_t^{\mathrm{pipe}},\qquad
+0\le m_t^{\mathrm{ship}}\le A_t^{\mathrm{ship}}\bar m_t^{\mathrm{ship}},\\
+m_t^{\mathrm{H2,del}}
+=(1-\lambda^{\mathrm{pipe}})m_t^{\mathrm{pipe}}
++(1-\lambda^{\mathrm{ship}})m_t^{\mathrm{ship}}.
+\end{gathered}
+\label{eq:h2-channel-capacity}
+\end{equation}
+式中$m_t^{\mathrm{pipe}}$、$m_t^{\mathrm{ship}}$为两类通道的提取质量，$\bar m$为相应小时能力上限，$\lambda$为运输损耗率；$m_t^{\mathrm{H2,del}}$表示最终到达接收端的氢气质量。
+
+算力结算采用第~\ref{sec:compute}节得到的有效IT服务量：
+\begin{equation}
+E_t^{\mathrm{CS,del}}=E_t^{\mathrm{CS}}.
+\label{eq:compute-delivery}
+\end{equation}
+海洋用能则采用需求平衡：
+\begin{equation}
+P_t^{\mathrm{marine}}+P_t^{\mathrm{marine,ENS}}
+=P_t^{\mathrm{marine,dem}},
+\qquad P_t^{\mathrm{marine,ENS}}\ge0 .
+\label{eq:marine-service}
+\end{equation}
+其中$P_t^{\mathrm{marine}}$为实际供给功率，$P_t^{\mathrm{marine,ENS}}$为未满足部分。各输出端口与公共母线使用相同小时索引，以保证能量统计和收益核算相互对应。

@@ -1,0 +1,25 @@
+\begin{tikzpicture}[
+  font=\small,>={Stealth[length=2mm]},
+  bus/.style={draw=blue!65!black,fill=blue!8,rounded corners=2pt,
+    minimum width=30mm,minimum height=13mm,align=center,font=\bfseries},
+  box/.style={draw=orange!80!black,fill=orange!10,rounded corners=2pt,
+    minimum width=33mm,minimum height=12mm,align=center},
+  state/.style={draw=violet!65!black,fill=violet!8,rounded corners=2pt,
+    minimum width=34mm,minimum height=12mm,align=center},
+  flow/.style={->,thick,draw=gray!80},
+  biflow/.style={<->,very thick,draw=gray!80},
+  info/.style={->,thick,dashed,draw=blue!65}
+]
+\node[bus] (bus) at (0,0.7) {公共交流母线};
+\node[box] (pcs) at (6,0.7) {双向PCS\\充放电互斥};
+\node[box] (cell) at (10,0.7) {电池能量体\\效率/自放电};
+\node[state] (soc) at (10,-1.25) {时段末$E_t^B$/SOC\\状态递推与期末规则};
+\node[state] (gfm) at (6,2.45) {构网责任$g_t$\\功率/能量备用代理};
+\node[state] (audit) at (10,2.45) {REGFM--EMT--HIL\\动态阶段门};
+\draw[biflow] (bus) -- node[midway,above]{母线侧$P_t^{ch},P_t^{dis}$} (pcs);
+\draw[biflow] (pcs) -- (cell);
+\draw[flow] (cell) -- (soc);
+\draw[info] (soc) -| (pcs);
+\draw[info] (gfm) -- (pcs);
+\draw[info] (gfm) -- (audit);
+\end{tikzpicture}
