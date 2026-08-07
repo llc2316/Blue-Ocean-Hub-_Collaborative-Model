@@ -1,5 +1,0 @@
-strategyId,eventCode,hours,eAvailableMWh,eSourceUsedMWh,eCurtailmentMWh,ensMWh,eElectricityInputMWh,eHydrogenInputMWh,eFlexibleComputeInputMWh,minimumBessSOC,minimumH2InventoryKg,planFallbackHours,reserveConstraintRelaxationHours,reliabilityRelaxationHours,totalCriticalDemandMWh,criticalServiceRate,principalConclusionEligible,principalConclusionStatus
-model_online_prior_posterior_event_aware,NORMAL,8700,2005898.93968884,1467528.60890525,538370.330783587,0,818937.975922065,299646.065704892,172380.557770682,0.5,1056.89624801832,306,0,0,185554.8,1,0,EXCLUDED_RELAXED_FALLBACK
-model_online_prior_posterior_event_aware,TYPHOON_WARNING,12,1473.4724550877,308.077072701257,1165.39538238645,0,0,0,0,0.8,53213.5107607333,0,0,0,257.88,1,0,EXCLUDED_RELAXED_FALLBACK
-model_online_prior_posterior_event_aware,TYPHOON_PASSAGE,24,0,0,0,0,0,0,0,0.10625,32731.0625159089,0,0,0,461.04,1,0,EXCLUDED_RELAXED_FALLBACK
-model_online_prior_posterior_event_aware,TYPHOON_RECOVERY,24,6742.12105273339,3387.56059279325,3354.56045994014,0,1922.21759851463,840,0,0.10625,31758.45017455,5,2,0,508.92,1,0,EXCLUDED_RELAXED_FALLBACK
