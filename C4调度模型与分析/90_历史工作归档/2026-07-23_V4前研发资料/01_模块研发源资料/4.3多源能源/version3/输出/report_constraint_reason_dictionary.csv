@@ -1,9 +1,0 @@
-Code,Key,Description
-0,NONE,无约束
-1,RESOURCE,资源边界
-2,ENVIRONMENT,环境边界
-3,FAULT,故障
-4,MAINTENANCE,检修
-5,RAMP,爬坡限制
-6,EMS_CURTAILMENT,EMS限发
-7,DATA_QUALITY,数据质量异常

@@ -1,6 +1,0 @@
-scenarioId,item,value,unit,dataStatus
-chapter5_all_channel_48h,annualizedEmbodiedEmissionKgCO2e,0,kgCO2e,[模型仿真结果；排放因子含假设值]
-chapter5_all_channel_48h,sourceEmissionKgCO2e,160116.412348282,kgCO2e,[模型仿真结果；排放因子含假设值]
-chapter5_all_channel_48h,bessThroughputEmissionKgCO2e,845.884887677891,kgCO2e,[模型仿真结果；排放因子含假设值]
-chapter5_all_channel_48h,gridImportEmissionKgCO2e,0,kgCO2e,[模型仿真结果；排放因子含假设值]
-chapter5_all_channel_48h,hydrogenDeliveryEmissionKgCO2e,37156.8909258491,kgCO2e,[模型仿真结果；排放因子含假设值]
