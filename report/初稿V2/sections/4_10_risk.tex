@@ -1,0 +1,28 @@
+\section{求解方法与模型输出}
+\label{sec:solution}
+
+综合状态方程、容量约束、母线平衡和目标函数后，模型包含功率、能量、库存和服务量等连续变量，以及充放电状态、电解槽在线模块数和设备启停等离散变量，可写成混合整数线性规划：
+\begin{equation}
+\begin{aligned}
+\min_{\bm x,\bm y}\quad &F_{\mathrm{eco}}(\bm x,\bm y)\\
+\mathrm{s.t.}\quad
+&A\bm x+B\bm y\le\bm b,\qquad
+A^{\mathrm{eq}}\bm x+B^{\mathrm{eq}}\bm y=\bm b^{\mathrm{eq}} .
+\end{aligned}
+\label{eq:milp-compact}
+\end{equation}
+式中$\bm x$为连续变量向量，$\bm y$为整数或二元变量向量；不等式部分汇集设备容量、SOC、库存、爬坡和计划份额等约束，等式部分汇集公共母线平衡、状态递推和需求平衡等关系。
+
+在线运行时，当前决策只使用已经获得的信息。记$\mathcal I_t$为时段$t$的信息集合，$\pi_\theta(\cdot)$为调度策略，则
+\begin{equation}
+\bm u_t=\pi_{\theta}(\mathcal I_t),\qquad
+\mathcal I_t=
+\sigma\!\left(
+\{\bm w_\tau,\bm d_\tau,\bm p_\tau,z_\tau^{\mathrm{evt}}\}_{\tau\le t},
+\bm s_{t-1},\Theta_{\mathrm{contract}}
+\right).
+\label{eq:causal-policy}
+\end{equation}
+其中$\bm u_t$为当前执行的调度决策，$\bm w_\tau$、$\bm d_\tau$和$\bm p_\tau$分别为截至$t$已获得的环境、需求和价格信息，$z_\tau^{\mathrm{evt}}$为事件状态，$\bm s_{t-1}$为上一时段末状态，$\Theta_{\mathrm{contract}}$为既定合同与运行边界；$\sigma(\cdot)$表示由这些已知量共同形成的信息集合。提前形成计划份额时，不使用当前小时尚未观测到的真实源侧功率。
+
+模型输出包括逐时源侧可用与实际利用功率、弃电、电池充放电和SOC、电解功率、产氢量与氢库存、算力设施功率与有效IT服务量、海缆送受端功率、氢气输出、海洋用能及各类未供功率，并进一步计算运行净成本、可再生能源利用率、ENS和环境指标。求解完成后同步复核母线平衡、电池状态和氢库存的数值残差。

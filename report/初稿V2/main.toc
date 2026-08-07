@@ -1,0 +1,145 @@
+\contentsline {chapter}{\numberline {第一章\hspace {.3em}}绪论}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}研究背景}{1}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}能源转型与海洋资源开发的共同要求}{1}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}研究对象由“发电项目”转向“价值转化系统”}{1}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}国家能源集团的场景牵引条件}{2}{subsection.1.1.3}%
+\contentsline {section}{\numberline {1.2}相关方向进展与研究缺口}{2}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}单项技术已形成不同程度的工程基础}{2}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}现有项目多验证单链路，完整协同仍缺证据}{2}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}从“技术可行”到“产业可行”缺少闭环}{2}{subsection.1.2.3}%
+\contentsline {section}{\numberline {1.3}核心问题与现实挑战}{3}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}远距离输送成本与单一电力收入不匹配}{3}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}弱网稳定需求与能量调度模型不在同一时间尺度}{3}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}绿色算力的高可靠服务与可再生能源波动存在张力}{3}{subsection.1.3.3}%
+\contentsline {subsection}{\numberline {1.3.4}多产品比较需要统一计量与因果信息边界}{3}{subsection.1.3.4}%
+\contentsline {section}{\numberline {1.4}研究思路、方法与创新}{4}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}研究问题}{4}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}技术路线}{4}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}拟形成的创新贡献}{5}{subsection.1.4.3}%
+\contentsline {subsection}{\numberline {1.4.4}章节安排}{5}{subsection.1.4.4}%
+\contentsline {chapter}{\numberline {第二章\hspace {.3em}}未来产业研判}{6}{chapter.2}%
+\contentsline {section}{\numberline {2.1}概念与产业边界}{6}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}国内外能源岛概念}{6}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}本项目定义与研究对象}{6}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}与传统海上开发模式的区别}{7}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}新产品、新服务与产业链}{8}{subsection.2.1.4}%
+\contentsline {section}{\numberline {2.2}国内外发展趋势与模式比较}{8}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}深水远岸与多能耦合趋势}{8}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}国际主要模式}{9}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}我国融合示范与“蓝海枢纽”的差异}{9}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}未来产业属性判定}{10}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}判定标准}{10}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}技术、市场和政策三重拐点}{10}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}我国特色优势与战略窗口}{11}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}形成特色路线的基础}{11}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}国家能源集团的牵引能力与边界}{11}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}窗口期与进入策略}{12}{subsection.2.4.3}%
+\contentsline {chapter}{\numberline {第三章\hspace {.3em}}蓝海枢纽系统架构与关键技术体系}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}多源能源供给层}{13}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}电源层级与容量边界}{13}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}互补性与不确定性处理}{14}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}海洋环境、台风与恢复状态}{14}{subsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.4}源侧物理、数据与控制接口}{15}{subsection.3.1.4}%
+\contentsline {section}{\numberline {3.2}构网型混合储能与价值转化中枢}{15}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}多时间尺度责任分工}{15}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}制氢、储氢与可选氢转电链}{16}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}构网、黑启动与动态校核边界}{17}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}储能与制氢接口}{17}{subsection.3.2.4}%
+\contentsline {section}{\numberline {3.3}绿色算力与制氢协同}{17}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}海底绿色算力的系统角色}{17}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}任务分级与柔性边界}{18}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}电—氢—算协同机制}{18}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}协同调度系统的控制层级与降级机制}{19}{subsection.3.3.4}%
+\contentsline {section}{\numberline {3.4}多形态输出与海洋综合用能}{19}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}四类输出端口}{19}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}电力、氢氨、算力与海洋服务的边界}{19}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}统一计量与数据链}{20}{subsection.3.4.3}%
+\contentsline {section}{\numberline {3.5}关键技术、证据归属与成熟度评估}{20}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}TRL方法与适用边界}{20}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}设备证据的集中汇总表}{20}{subsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.5.3}关键技术TRL初判}{22}{subsection.3.5.3}%
+\contentsline {subsection}{\numberline {3.5.4}系统短板与优先攻关方向}{23}{subsection.3.5.4}%
+\contentsline {chapter}{\numberline {第四章\hspace {.3em}}源储算用协同调度与多目标优化模型}{24}{chapter.4}%
+\contentsline {section}{\numberline {4.1}模型范围与变量体系}{24}{section.4.1}%
+\contentsline {section}{\numberline {4.2}多源可再生能源出力模型}{25}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}漂浮式风电}{25}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}漂浮式光伏}{26}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}潮流能与多源聚合}{26}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}产品输出与结算约束}{27}{section.4.3}%
+\contentsline {section}{\numberline {4.4}构网型电池储能模型}{28}{section.4.4}%
+\contentsline {section}{\numberline {4.5}电解制氢、储氢与氢转电模型}{28}{section.4.5}%
+\contentsline {section}{\numberline {4.6}绿色算力负荷模型}{29}{section.4.6}%
+\contentsline {section}{\numberline {4.7}公共母线功率平衡}{30}{section.4.7}%
+\contentsline {section}{\numberline {4.8}目标函数与评价指标}{30}{section.4.8}%
+\contentsline {section}{\numberline {4.9}联合调度约束}{31}{section.4.9}%
+\contentsline {section}{\numberline {4.10}求解方法与模型输出}{32}{section.4.10}%
+\contentsline {chapter}{\numberline {第五章\hspace {.3em}}场景仿真、方案对比与在线策略验证}{33}{chapter.5}%
+\contentsline {section}{\numberline {5.1}验证逻辑与第4章模型映射}{33}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}分层验证框架}{33}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}第4章--第5章可追溯矩阵}{34}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}统一结果判据}{35}{subsection.5.1.3}%
+\contentsline {section}{\numberline {5.2}数据、容量与场景构造}{36}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}共同资产与计量边界}{36}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}年度多源资源数据与代理限制}{37}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}合成48 h机制验证场景}{37}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5.2.4}正常典型48 h选取}{37}{subsection.5.2.4}%
+\contentsline {subsection}{\numberline {5.2.5}年度极端事件构造}{38}{subsection.5.2.5}%
+\contentsline {section}{\numberline {5.3}三类资产基准与在线先验--后验策略}{38}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}方案集合与公平性边界}{38}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}多源在线预测}{39}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}计划生成与计划平滑处理}{39}{subsection.5.3.3}%
+\contentsline {subsection}{\numberline {5.3.4}风险状态机与可靠性层级}{40}{subsection.5.3.4}%
+\contentsline {section}{\numberline {5.4}合成48 h全通道机制验证}{40}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}八阶段动作覆盖}{40}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}总量结果与自动审计}{40}{subsection.5.4.2}%
+\contentsline {section}{\numberline {5.5}正常典型48 h四方案比较}{42}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}样本资源特征}{42}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}能量、产品与可靠性结果}{43}{subsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.5.3}运行层经济结果}{44}{subsection.5.5.3}%
+\contentsline {subsection}{\numberline {5.5.4}分方案行为解释}{45}{subsection.5.5.4}%
+\contentsline {subsubsection}{纯电资产基准}{45}{subsubsection*.31}%
+\contentsline {subsubsection}{纯氢资产基准}{45}{subsubsection*.32}%
+\contentsline {subsubsection}{纯算资产基准}{45}{subsubsection*.33}%
+\contentsline {subsubsection}{在线先验--后验策略}{46}{subsubsection*.34}%
+\contentsline {subsection}{\numberline {5.5.5}运行层环境代理}{47}{subsection.5.5.5}%
+\contentsline {section}{\numberline {5.6}8,760 h年度因果运行与极端事件验证}{47}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}年度总量与源侧构成}{47}{subsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.6.2}产品分配与服务结果}{49}{subsection.5.6.2}%
+\contentsline {subsection}{\numberline {5.6.3}可靠性分解}{50}{subsection.5.6.3}%
+\contentsline {subsection}{\numberline {5.6.4}预警--过境--恢复分相结果}{51}{subsection.5.6.4}%
+\contentsline {subsection}{\numberline {5.6.5}年度运行层经济分账}{52}{subsection.5.6.5}%
+\contentsline {subsection}{\numberline {5.6.6}年度运行层环境代理}{53}{subsection.5.6.6}%
+\contentsline {subsection}{\numberline {5.6.7}预测、控制和求解审计}{53}{subsection.5.6.7}%
+\contentsline {section}{\numberline {5.7}合理性、矛盾与异常的完整审查}{54}{section.5.7}%
+\contentsline {subsection}{\numberline {5.7.1}已消除的前后口径矛盾}{54}{subsection.5.7.1}%
+\contentsline {subsection}{\numberline {5.7.2}仍存在但可以解释的模型现象}{54}{subsection.5.7.2}%
+\contentsline {section}{\numberline {5.8}敏感性设计与下一步验证矩阵}{56}{section.5.8}%
+\contentsline {section}{\numberline {5.9}本章小结}{58}{section.5.9}%
+\contentsline {chapter}{\numberline {第六章\hspace {.3em}}投资模式、政策机制与产业培育路径}{59}{chapter.6}%
+\contentsline {section}{\numberline {6.1}投资收益与商业模式}{59}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}示范项目与商业项目分轨推进}{59}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}投资主体、治理结构与合同组合}{59}{subsection.6.1.2}%
+\contentsline {subsection}{\numberline {6.1.3}成本边界与全生命周期投资}{60}{subsection.6.1.3}%
+\contentsline {subsection}{\numberline {6.1.4}多形态收入及其核算原则}{61}{subsection.6.1.4}%
+\contentsline {subsection}{\numberline {6.1.5}经济评价与可融资性}{62}{subsection.6.1.5}%
+\contentsline {subsection}{\numberline {6.1.6}国家能源集团适配性}{62}{subsection.6.1.6}%
+\contentsline {section}{\numberline {6.2}关键技术验证与投资决策条件}{62}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}从TRL到投资条件}{62}{subsection.6.2.1}%
+\contentsline {section}{\numberline {6.3}市场机制与政策建议}{63}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}现行政策的可利用边界}{63}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}建议争取的制度机制}{64}{subsection.6.3.2}%
+\contentsline {section}{\numberline {6.4}产业培育路线与生态}{64}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}基于阶段条件的产业路线图}{64}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}产业生态与组织分工}{66}{subsection.6.4.2}%
+\contentsline {section}{\numberline {6.5}示范工程建议}{66}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}示范目标与候选配置}{66}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}场址比选}{67}{subsection.6.5.2}%
+\contentsline {subsection}{\numberline {6.5.3}实施节点与停止条件}{67}{subsection.6.5.3}%
+\contentsline {subsection}{\numberline {6.5.4}验收指标与章节接口}{68}{subsection.6.5.4}%
+\contentsline {subsection}{\numberline {6.5.5}示范投资建议}{68}{subsection.6.5.5}%
+\contentsline {section}{后续数据需求与企业调研内容}{69}{section*.57}%
+\contentsline {chapter}{\numberline {第七章\hspace {.3em}}结论与展望}{70}{chapter.7}%
+\contentsline {section}{\numberline {7.1}主要研究结论}{70}{section.7.1}%
+\contentsline {section}{\numberline {7.2}研究贡献与应用价值}{71}{section.7.2}%
+\contentsline {section}{\numberline {7.3}研究局限与后续工作}{71}{section.7.3}%
+\contentsline {chapter}{参考文献}{72}{chapter*.59}%

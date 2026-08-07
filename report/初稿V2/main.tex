@@ -1,0 +1,201 @@
+% !TEX program = xelatex
+\documentclass[UTF8,12pt,a4paper,openany,fontset=fandol]{ctexrep}
+
+
+\usepackage{geometry}
+\geometry{left=2.8cm,right=2.5cm,top=2.6cm,bottom=2.6cm}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds,calc,shapes.geometric}
+\usepackage{booktabs,tabularx,array,multirow,longtable}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{enumitem}
+\usepackage{caption}
+
+\usepackage{xcolor}
+\usepackage{xurl}
+\usepackage{fancyhdr}
+\usepackage[unicode,hidelinks]{hyperref}
+\usepackage{bookmark}
+
+% ---------- 正文与标题层级 ----------
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+\setlength{\headheight}{15pt}
+\setlength{\emergencystretch}{3em}
+\linespread{1.35}
+\setlist{leftmargin=2.2em,itemsep=0.15em,topsep=0.3em,parsep=0pt}
+\setlist[description]{style=nextline,leftmargin=2em}
+\setcounter{tocdepth}{2}
+
+\ctexset{
+  chapter={
+    format=\centering\bfseries\zihao{2},
+    name={第,章},
+    number=\chinese{chapter},
+    aftername=\quad,
+    beforeskip=0.5\baselineskip,
+    afterskip=1\baselineskip,
+    fixskip=true
+  },
+  section={
+    format=\bfseries\zihao{3},
+    indent=0pt,
+    beforeskip=1.0\baselineskip,
+    afterskip=0.45\baselineskip,
+    fixskip=true
+  },
+  subsection={
+    format=\bfseries\zihao{4},
+    indent=0pt,
+    beforeskip=0.8\baselineskip,
+    afterskip=0.35\baselineskip,
+    fixskip=true
+  },
+  subsubsection={
+    format=\bfseries\zihao{-4},
+    indent=0pt,
+    beforeskip=0.65\baselineskip,
+    afterskip=0.25\baselineskip,
+    fixskip=true
+  }
+}
+
+\DeclareCaptionFont{reportcaption}{\songti\zihao{5}}
+\captionsetup{
+  font=reportcaption,
+  labelsep=quad,
+  justification=centering,
+  singlelinecheck=true,
+  skip=6pt
+}
+\captionsetup[figure]{position=bottom}
+\captionsetup[table]{position=top}
+\renewcommand{\arraystretch}{1.20}
+\setlength{\tabcolsep}{5pt}
+
+\sisetup{
+  mode=match,
+  propagate-math-font=true,
+  reset-math-version=false,
+  reset-text-family=false,
+  reset-text-series=false,
+  reset-text-shape=false,
+  text-family-to-math=true,
+  text-series-to-math=true
+}
+
+% ---------- 项目通用命令 ----------
+\newcommand{\myunit}[1]{\,\mathrm{#1}}
+\newcommand{\clip}{\operatorname{clip}}
+\newcommand{\sourcetype}[1]{\par\vspace{2pt}\begin{center}{\zihao{6}资料来源：#1}\end{center}\vspace{2pt}}
+\newcommand{\internalbasis}{\textbf{项目内部设定}}
+
+% ---------- 申报信息 ----------
+\newcommand{\ReportTitle}{蓝海枢纽：面向深远海能源岛的源储算用协同调度与多形态价值转化路径研究}
+\newcommand{\CompetitionName}{2026年度中国青年科技创新“揭榜挂帅”擂台赛学生赛道}
+\newcommand{\ApplicationField}{能源领域“未来产业”}
+\newcommand{\ChallengeTitle}{能源领域“未来产业”的潜在方向、关键技术、培育路径研究}
+\newcommand{\WorkCode}{}
+\newcommand{\blankfield}[1]{\rule{#1}{0.4pt}}
+
+% ---------- 页码 ----------
+\fancypagestyle{frontmatter}{
+  \fancyhf{}
+  \fancyfoot[C]{\songti\zihao{5}\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\fancypagestyle{mainmatter}{
+  \fancyhf{}
+  \fancyfoot[C]{\songti\zihao{5}\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\songti\zihao{5}\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+\begin{document}
+\songti\zihao{-4}
+
+% ---------- 封面 ----------
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+  \thispagestyle{empty}
+  \centering
+  \vspace*{0.8cm}
+  {\heiti\zihao{3}\CompetitionName\par}
+  \vspace{2.0cm}
+  {\heiti\bfseries\zihao{1}蓝海枢纽\par}
+  \vspace{0.7cm}
+  \begin{minipage}{0.88\textwidth}
+    \centering
+    {\heiti\bfseries\zihao{2}面向深远海能源岛的源储算用协同调度与多形态价值转化路径研究\par}
+  \end{minipage}\par
+  \vspace{0.9cm}
+  {\heiti\zihao{3}研究报告\par}
+  \vfill
+  \begin{minipage}{0.84\textwidth}
+  \renewcommand{\arraystretch}{1.75}
+  \begin{tabularx}{\textwidth}{>{\heiti\raggedleft\arraybackslash}p{3.8cm}X}
+    申报领域： & \ApplicationField \\
+    揭榜榜题名称： & \ChallengeTitle \\
+    推报学校名称： & \blankfield{6.8cm} \\
+    申报者姓名： & \blankfield{6.8cm} \\
+    联系电话： & \blankfield{6.8cm} \\
+    指导教师： & \blankfield{6.8cm}
+  \end{tabularx}
+  \end{minipage}
+  \vfill
+  {\songti\zihao{4}2026年\quad 月\par}
+  \vspace{0.5cm}
+\end{titlepage}
+
+% ---------- 摘要 ----------
+\clearpage
+\hypersetup{pageanchor=true}
+\pagenumbering{Roman}
+\pagestyle{frontmatter}
+\thispagestyle{frontmatter}
+\noindent{\songti\zihao{5}作品编码：\WorkCode}
+
+\vspace{1.0cm}
+\begin{center}
+  {\heiti\bfseries\zihao{2}\ReportTitle\par}
+\end{center}
+\vspace{0.7cm}
+
+\noindent{\heiti\zihao{4}摘要：}{\songti\zihao{-4}
+面向深远海清洁能源开发中远距离输送成本高、波动性电源消纳受限、离网系统电压频率支撑不足以及单一售电模式价值实现渠道有限等问题，本文提出“源—储—算—用”四位一体的深远海能源枢纽方案。系统以漂浮式风电为主体，协同漂浮式光伏并为波浪能、潮流能预留接入接口；以构网型短时储能承担秒级至分钟级功率平衡、电压频率支撑和黑启动，以长时储能及制氢环节承担小时级至季节级能量转移；在价值转化端引入海底绿色算力和海水制氢等可调负荷，并通过电力外送、绿氢、算力服务及海洋综合用能形成多形态输出，同时为后续绿氨路线预留扩展接口。研究围绕未来产业研判、总体架构、协同调度模型、仿真验证及产业培育路径展开，明确各子系统的功率边界、状态变量、损耗归属、时间尺度和运行约束，建立兼顾经济性、清洁能源消纳、供能可靠性与环境绩效的多目标优化框架。方案比较采用逐时因果调度，固定策略依据实时功率信息运行，优化策略按滚动窗口更新；年度场景同时考虑正常波动、设备状态变化及台风等极端事件。在此基础上，报告从投资组织、收益组合、政策机制、示范工程和产业生态等方面提出分阶段实施路径，为深远海清洁能源由单一电力外送向电力、分子能源、算力服务与海洋用能协同转化提供参考。}
+
+\vspace{0.55\baselineskip}
+\noindent{\heiti\zihao{4}关键词：}{\songti\zihao{-4}深远海能源岛；源储算用；构网型混合储能；绿色算力；多形态价值转化}
+
+% ---------- 目录 ----------
+\clearpage
+\renewcommand{\contentsname}{目\quad 录}
+\begingroup
+  \ctexset{chapter={format=\centering\bfseries\zihao{2}}}
+  \tableofcontents
+\endgroup
+\clearpage
+
+% ---------- 正文----------
+\pagenumbering{arabic}
+\pagestyle{mainmatter}
+\thispagestyle{mainmatter}
+\input{chapters/chapter1}
+\input{chapters/chapter2}
+\input{chapters/chapter3}
+\input{chapters/chapter4}
+\input{chapters/chapter5}
+\input{chapters/chapter6}
+\input{chapters/chapter7}
+\input{references}
+\end{document}

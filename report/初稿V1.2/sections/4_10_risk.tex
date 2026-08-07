@@ -1,0 +1,89 @@
+\section{求解流程与模型复核}
+\label{sec:solution}
+
+\subsection{MILP求解形式}
+
+在给定设备边界、期初状态和运行目标后，联合调度问题可写为
+\begin{equation}
+\min_{\bm x_t,\bm y_t} F_{eco,t}
+\quad\mathrm{s.t.}\quad
+\bm A_t\bm x_t+\bm B_t\bm y_t\le\bm b_t,
+\quad
+\bm A_t^{eq}\bm x_t+\bm B_t^{eq}\bm y_t=\bm b_t^{eq},
+\label{eq:milp-compact}
+\end{equation}
+其中$\bm x_t$为连续变量，$\bm y_t$为整数或二元变量。服务可靠性、柔性任务延期和经济
+收益采用词典序求解：先确定高优先级目标的最优值，再在其允许容差内优化下一层目标，
+避免任意权重改变负荷优先级。
+
+\subsection{因果信息边界与逐时滚动}
+
+运行决策只使用决策时点能够获得的信息，满足
+\begin{equation}
+\bm u_t=\pi_\theta(\mathcal I_t),\qquad
+\mathcal I_t=\sigma\!\left(
+\{\bm w_\tau,\bm d_\tau,\bm p_\tau,z_\tau^{evt}\}_{\tau\le t},
+\bm s_{t-1},\Theta^{contract}\right),
+\label{eq:causal-policy}
+\end{equation}
+其中$\bm w_t$为源侧观测，$\bm d_t$为负荷和任务需求，$\bm p_t$为价格，$\bm s_{t-1}$
+为上一时段末状态，$\Theta^{contract}$为设备和合同参数。信息集不包含未来真实出力、未来
+真实价格或全年总供电量。
+
+计划阶段进一步采用
+\begin{equation}
+\bm u_t^{plan}=\pi_\theta(\mathcal I_t^-),\qquad
+\mathcal I_t^-=\sigma\!\left(
+\{\bm w_\tau\}_{\tau\le t-1},z_t^{evt},\bm d_t,\bm p_t,
+\bm s_{t-1},\Theta^{contract}\right),
+\label{eq:causal-planning-policy}
+\end{equation}
+即先利用历史观测和当期已知状态生成计划，再根据当期实测功率完成结算调度。预测更新可采用
+卡尔曼滤波\cite{kalman1960}；当多种估计的交叉相关未知时，可采用协方差交集进行融合
+\cite{julier1997ci}。
+
+逐时求解流程如下：
+\begin{enumerate}[label=(\arabic*)]
+\item 根据历史观测、气象预警和设备状态生成当期资源预测；
+\item 读取上一时段末的电池能量、氢库存、设备在线状态和算力队列；
+\item 在预测功率下生成电力、制氢和算力分配计划，并进行平滑和变化率限制；
+\item 读取当期实测功率，在设备可行域内修正计划；若资源不足，则先最小化未供能，再在最小未供能容差内优化经济目标\cite{mavrotas2009}；
+\item 完成功率平衡和状态递推检查后提交动作，并将时段末状态传递至下一时段。
+\end{enumerate}
+
+单时段滚动能够避免完美预见，但对跨日库存价值的刻画有限。后续可扩展为6--48~h滚动预测
+控制，每次只执行首时段决策，并使用当时可获得的预测序列更新下一窗口。
+
+\subsection{基准方案与离线参考}
+
+方案比较包括纯电外送、纯制氢、纯算力等单一资产基准，以及多路径协同调度方案。各方案
+使用相同的资源序列、公共负荷、设备参数、初始状态和事件时序；关闭某类产品路径时，只
+关闭该路径的专属设备和收入项。
+
+利用完整48~h或年度真实序列求解的全时域MILP可作为完美信息参考，用于衡量在线策略与
+理论上界之间的差距。该结果不代表可部署调度策略，正式运行评价以式~\eqref{eq:causal-policy}
+规定的信息边界为准。
+
+\subsection{极端事件运行规则}
+
+台风等事件采用“预警--过境--恢复”状态机。预警阶段适当降低可选外送、制氢和柔性算力，
+为电池和关键负荷保留裕度；过境阶段根据设备保护状态关闭或降额相关端口，优先保障内部
+关键负荷和刚性服务；恢复阶段依据设备检查结果、通信状态和启动约束逐步恢复运行。
+
+该状态机只描述运行调度响应。漂浮平台、海缆和海底数据舱的结构安全仍需由载荷分析、
+设备认证和现场试验验证。
+
+\subsection{数值检查与动态校核}
+
+结果进入汇总前需满足以下条件：求解器返回可用整数解；输入输出均为有限值；母线平衡、
+电池能量和氢库存残差在容差内；容量、SOC、库存、互斥、产品分配和服务等级约束均未越界。
+求解失败或硬约束检查不通过时，该时段结果不进入统计。
+
+小时级调度工作点还需经过更短时间尺度的复核：
+\begin{enumerate}[label=(\arabic*)]
+\item 5--15~min功率可行性检查，用于校核源侧、PCS和电解槽爬坡；
+\item REGFM正序模型校核构网有功、无功、限流和频率响应\cite{regfm-b1}；
+\item EMT和HIL校核电压、故障穿越、保护配合、谐波及多机并联；
+\item 黑启动、船运窗口、海工生存和现场试验按工程验收要求实施。
+\end{enumerate}
+若动态复核不通过，应相应收紧SOC、备用、P--Q、爬坡或端口容量，再返回小时模型重新求解。

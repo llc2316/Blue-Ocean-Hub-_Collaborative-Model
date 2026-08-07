@@ -1,0 +1,37 @@
+\section{模型范围与变量体系}
+\label{sec:symbols}
+
+协同调度模型采用离散时序描述能源岛在连续运行过程中的功率分配与状态变化。设调度时段集合为
+\begin{equation}
+\mathcal T=\{1,2,\ldots,T\},\qquad \Delta t=1~\mathrm{h}.
+\label{eq:common-sets}
+\end{equation}
+式中，$t\in\mathcal T$为小时索引，$T$为计算时域包含的总时段数，$\Delta t$为相邻调度时段的时间间隔。功率变量表示对应小时内的平均功率，电池能量和氢库存定义为时段末状态。滚动计算时，上一窗口的末状态作为下一窗口的初始状态。
+
+模型输入归纳为环境、需求、价格和设备状态四类时序信息。记$\bm w_t$为环境变量向量，包括风速、辐照度、潮流速度、海温和平台运动；$\bm d_t$为需求变量向量，包括内部用电、算力需求和海洋用能需求；$\bm p_t$为电力、氢气、算力和海洋服务价格；$\bm a_t$表示设备与输出通道的逐时可用状态。给定技术参数集合$\Theta$和初始状态$\bm s_0$后，模型求取各时段运行决策$\bm x_t$，并由状态方程更新系统状态$\bm s_t$。
+
+表~\ref{tab:module-responsibility}给出各子模型在联合计算中的主要变量关系。后续各节按照物理过程、数学关系和运行边界展开，并在第~\ref{sec:power-balance}节通过公共母线功率平衡实现耦合。
+
+\begin{table}[H]
+\centering
+\caption{协同调度模型的子模型变量关系}
+\label{tab:module-responsibility}
+\begin{tabularx}{\textwidth}{p{2.2cm}X X}
+\toprule
+子模型 & 主要外生输入 & 主要状态与决策变量\\
+\midrule
+多源供给 & 风速、辐照度、潮流速度、平台运动、设备功率曲线与可用状态 &
+$P_t^{\mathrm{w,av}}$、$P_t^{\mathrm{pv,av}}$、$P_t^{\mathrm{tc,av}}$、$P_t^{\mathrm{src,av}}$\\
+电池储能 & 初始能量、效率、SOC边界、充放电功率及构网裕度 &
+$P_t^{\mathrm{ch}}$、$P_t^{\mathrm{dis}}$、$E_t^{\mathrm B}$\\
+制氢储氢 & 电解槽模块参数、SEC、初始氢库存、储运及氢转电能力 &
+$P_t^{\mathrm{EL}}$、$m_t^{\mathrm{prod}}$、$H_t$、$P_t^{\mathrm{H2P}}$\\
+绿色算力 & 基础需求、柔性上限、设施容量、PUE及任务参数 &
+$P_t^{\mathrm{comp,b}}$、$P_t^{\mathrm{comp,f}}$、$E_t^{\mathrm{CS}}$\\
+产品输出 & 海缆与陆侧接纳、氢气储运、海洋用能需求 &
+$P_t^{\mathrm{cable,s/r}}$、$m_t^{\mathrm{pipe/ship}}$、$P_t^{\mathrm{marine}}$\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+模型统一采用MW表示功率、MWh表示电能、kg表示氢气质量。算力服务采用MWh-CS计量，其中CS表示计算服务量；该指标由数据中心设施用电经逐时PUE折算得到，用于描述作用于IT设备的等效服务电量，并与设施入口电能分别记录。

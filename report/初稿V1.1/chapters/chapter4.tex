@@ -1,0 +1,42 @@
+% 将本文件通过 \input{chapter4_body} 接入团队总稿即可。
+% 本章结构严格对应老师报告的数学模型结构，不再单列“独立验证”小节。
+\setcounter{chapter}{3}
+\chapter{源储算用协同调度与多目标优化模型}
+
+本章面向深远海能源岛建立“源--储--算--用”统一数学模型。模型以多源可再生能源的
+逐时可用功率为输入，以构网型电池储能和制氢--储氢链为跨时段调节中枢，将电力外送、
+氢能交付、绿色算力服务和海洋综合用能纳入同一公共母线与价值账簿。章节只说明系统
+边界、物理方程、目标与求解机制；子模型测试、方案比较、典型~48~h与年度仿真结果统一
+放入第5章，避免用方法验证结果替代项目结论。
+
+设备功能、工程接口、海洋适应性和TRL证据以第3章为唯一主归属；本章只接收其参数类别
+并转写为可求解边界。未取得OEM、EPC、承购合同或运行数据的具体数值均标注为
+\assumptiontag，来源尚未核验的专业代理公式标注为\verifytag。
+
+模型采用三层责任分工：设备模块给出物理可行域，统一优化层在可行域内作运行决策，
+评价层依据实际交付量计算经济、环境与可靠性指标。小时级模型不直接给出频率、电压、
+故障穿越或黑启动合格结论，相关工作点须进入正序动态、EMT、HIL及现场试验复核。
+
+图~\ref{fig:ch4-model-architecture}给出本章统一模型的能量、产品、服务与信息流。实线表示
+物理能量或产品流，虚线表示边界、状态和调度信息；所有模块在同一公共测点体系和逐时
+状态链下闭合。
+\begin{figure}[H]
+\centering
+\resizebox{\textwidth}{!}{\input{figures/chapter4/fig4-1_model_architecture}}
+\caption{源储算用联合模型总体架构}
+\label{fig:ch4-model-architecture}
+\sourcetype{项目内部模型架构图。}
+\end{figure}
+
+\input{sections/4_1_symbols}
+\input{sections/4_2_renewables_load}
+\input{sections/4_3_cable_grid}
+\input{sections/4_4_battery}
+\input{sections/4_5_hydrogen}
+% 原4.6“燃料电池回发”不再作为独立子模型；其可选氢转电边界并入4.5。
+% 删除原4.6后，后续小节依次上位为4.6--4.10，不保留空号。
+\input{sections/4_6_compute}
+\input{sections/4_7_power_balance}
+\input{sections/4_8_objective}
+\input{sections/4_9_capacity_planning}
+\input{sections/4_10_risk}

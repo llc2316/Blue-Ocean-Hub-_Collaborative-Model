@@ -1,0 +1,104 @@
+\section{多源可再生能源出力模型}
+\label{sec:renewables-load}
+
+多源供给模型将海洋环境时序转换为公共汇集点的逐时可用功率。风电、光伏和潮流能分别依据资源条件、设备功率曲线和运行状态计算可用功率，再扣除相应集电损耗。最终得到的$P_t^{\mathrm{src,av}}$表示第$t$小时源侧能够提供的最大电功率。
+
+\subsection{漂浮式风电}
+
+漂浮平台的纵荡和纵摇会改变叶轮相对于来流的运动速度。设第$j$台风机轮毂高度处的环境风速为$v_{j,t}^{\mathrm{hub}}$，则其等效相对风速写为
+\begin{equation}
+v_{j,t}^{\mathrm{rel}}
+=\max\!\left[0,\,
+v_{j,t}^{\mathrm{hub}}-\dot x_{j,t}^{\mathrm{surge}}
+-H_j\dot\theta_{j,t}^{\mathrm{pitch}}\right].
+\label{eq:wind-relative}
+\end{equation}
+式中，$\dot x_{j,t}^{\mathrm{surge}}$为平台沿主风向的纵荡速度，单位为m/s；$H_j$为轮毂相对平台参考点的高度；$\dot\theta_{j,t}^{\mathrm{pitch}}$为纵摇角速度。乘积$H_j\dot\theta_{j,t}^{\mathrm{pitch}}$由$v=\omega r$得到，表示纵摇在轮毂位置产生的近似线速度，因此与风速具有相同量纲。外层$\max(0,\cdot)$用于保证修正后的相对风速非负。
+
+相对风速经设备电功率曲线$f_{P-v}(\cdot)$映射为机组可发功率，并受额定功率、设备状态和降额限制：
+\begin{equation}
+0\le P_{j,t}^{\mathrm{w,av}}
+\le a_{j,t}^{\mathrm w}d_{j,t}^{\mathrm w}
+\min\!\left[f_{P-v}(v_{j,t}^{\mathrm{rel}}),P_j^{\mathrm r}\right].
+\label{eq:wind-curve}
+\end{equation}
+其中$P_j^{\mathrm r}$为额定功率，$a_{j,t}^{\mathrm w}$表示设备可用状态，$d_{j,t}^{\mathrm w}$表示环境或控制造成的降额比例。功率曲线若已对应电侧输出，则不再重复乘用发电机效率。场内集电损耗率为$\lambda^{\mathrm{w,col}}$时，风电场汇集点功率为
+\begin{equation}
+P_t^{\mathrm{w,av}}
+=(1-\lambda^{\mathrm{w,col}})\sum_jP_{j,t}^{\mathrm{w,av}}.
+\label{eq:wind-available}
+\end{equation}
+切入/切出风速、极端海况、故障和复归状态均通过$a_{j,t}^{\mathrm w}$进入功率边界。受控增功时还满足
+\begin{equation}
+P_{j,t}^{\mathrm{w,av}}-P_{j,t-1}^{\mathrm{w,av}}
+\le R_j^{\mathrm{w,up}}\Delta t ,
+\label{eq:wind-ramp}
+\end{equation}
+其中$R_j^{\mathrm{w,up}}$为向上爬坡速率；资源骤降和保护停机时，可用功率直接随物理边界下降。
+
+\subsection{漂浮式光伏}
+
+漂浮式光伏首先根据太阳位置和平台姿态计算阵列面辐照度。设$\bm s_t$为太阳方向单位向量，$\bm n_t$为阵列法向量，$n_{z,t}$为其竖直分量，则
+\begin{equation}
+\begin{aligned}
+G_t^{\mathrm{POA}}={}&G_{\mathrm{DNI},t}\max(0,\bm s_t\!\cdot\!\bm n_t)
++G_{\mathrm{DHI},t}\frac{1+n_{z,t}}{2}\\
+&+\rho_gG_{\mathrm{GHI},t}\frac{1-n_{z,t}}{2}
++\varphi_bG_{\mathrm{rear},t}.
+\end{aligned}
+\label{eq:pv-poa}
+\end{equation}
+其中$G_{\mathrm{DNI}}$、$G_{\mathrm{DHI}}$和$G_{\mathrm{GHI}}$分别为直接法向、散射水平和总水平辐照度，$\rho_g$为等效反照率，$\varphi_bG_{\mathrm{rear}}$表示背面辐照贡献。
+
+组件温度采用
+\[
+T_t^{\mathrm m}=T_t^{\mathrm a}+\frac{G_t^{\mathrm{POA}}}{U_0+U_1v_t^{\mathrm{loc}}},
+\]
+其中$T_t^{\mathrm a}$为环境温度，$v_t^{\mathrm{loc}}$为局部风速，$U_0,U_1$为换热系数。考虑温度修正、逆变效率、逆变器削顶和集电损耗后，
+\begin{equation}
+P_t^{\mathrm{pv,av}}
+=(1-\lambda^{\mathrm{pv,col}})
+\min\!\left[
+P_{\mathrm{ac}}^{\mathrm r},
+\eta_{\mathrm{inv}}(l_t)P_{\mathrm{dc}}^{\mathrm r}
+\frac{G_t^{\mathrm{POA}}}{G_{\mathrm{STC}}}
+\bigl(1+\gamma_P(T_t^{\mathrm m}-T_{\mathrm{STC}})\bigr)
+\right].
+\label{eq:pv-ac}
+\end{equation}
+式中$P_{\mathrm{dc}}^{\mathrm r}$、$P_{\mathrm{ac}}^{\mathrm r}$分别为直流和交流额定功率，$\eta_{\mathrm{inv}}(l_t)$为负载率$l_t$下的逆变效率，$\gamma_P$为功率温度系数。
+
+\subsection{潮流能与多源聚合}
+
+设$u_t$为潮流轴向速度，$u_t^{\mathrm{plat}}$为平台同方向运动速度，$k_t^{\mathrm{wake}}$为尾流修正系数，则
+\begin{equation}
+u_t^{\mathrm{rel}}=(u_t-u_t^{\mathrm{plat}})k_t^{\mathrm{wake}}.
+\label{eq:tidal-relative}
+\end{equation}
+相对流速保留方向信息，涨、落潮分别采用$f_{\mathrm{flood}}$和$f_{\mathrm{ebb}}$功率曲线：
+\begin{equation}
+P_t^{\mathrm{tc,curve}}=
+\begin{cases}
+f_{\mathrm{flood}}(|u_t^{\mathrm{rel}}|), & u_t^{\mathrm{rel}}>u_{\mathrm{db}},\\
+f_{\mathrm{ebb}}(|u_t^{\mathrm{rel}}|), & u_t^{\mathrm{rel}}<-u_{\mathrm{db}},\\
+0, & |u_t^{\mathrm{rel}}|\le u_{\mathrm{db}}.
+\end{cases}
+\label{eq:tidal-curve}
+\end{equation}
+其中$u_{\mathrm{db}}$为换向死区流速。功率曲线结果再经设备可用状态、环境降额和集电损耗修正，得到$P_t^{\mathrm{tc,av}}$。
+
+三类电源在公共汇集点聚合为
+\begin{equation}
+P_t^{\mathrm{src,av}}
+=P_t^{\mathrm{w,av}}+P_t^{\mathrm{pv,av}}+P_t^{\mathrm{tc,av}},
+\label{eq:source-aggregate}
+\end{equation}
+并满足
+\begin{equation}
+P_t^{\mathrm{src,av}}
+=P_t^{\mathrm{src,use}}+P_t^{\mathrm{curt}},
+\qquad
+0\le P_t^{\mathrm{src,use}}\le P_t^{\mathrm{src,av}}.
+\label{eq:source-use-curt}
+\end{equation}
+其中$P_t^{\mathrm{src,use}}$为实际进入公共母线的可再生能源功率，$P_t^{\mathrm{curt}}$为弃电功率。多场景分析采用成组的风、光、潮时序，以保留不同能源之间的相关性和时间连续性。
